@@ -1,0 +1,54 @@
+//
+//  StartView.swift
+//  KEEP_v2
+//
+//  Created by bibiga on 9/5/24.
+//
+
+import SwiftUI
+
+struct StartView: View {
+    var body: some View {
+        Spacer()
+        
+        Image("keeplogo")
+            .resizable()
+            .scaledToFit()
+            .frame(width:187,height: 84)
+            .padding(.bottom, 256)
+        
+        
+        VStack(spacing: 13) {
+            Button {
+                
+            } label: {
+                Rectangle()
+                    .frame(width:354, height:62)
+                    .cornerRadius(15)
+                    .foregroundColor(mainColor)
+                    .overlay {
+                        Text("시작하기")
+                            .font(.system(size: 25, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+            }
+            HStack {
+                Text("이미 계정이 있으신가요?")
+                    .foregroundColor(textColor)
+                    .font(.system(size: 16, weight: .regular))
+                Button {
+                    
+                } label: {
+                    Text("로그인하기")
+                        .foregroundColor(mainColor)
+                        .font(.system(size: 16, weight: .bold))
+                }
+            }
+        }
+        .padding(.bottom, 32)
+    }
+}
+
+#Preview {
+    StartView()
+}

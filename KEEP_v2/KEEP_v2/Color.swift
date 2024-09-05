@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+let mainColor = Color(hex: "#5589FE")
+let textColor = Color(hex: "181F29")
+
 extension Color {
     init(hex: String) {
         let cleanedHex = hex.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "#", with: "")
