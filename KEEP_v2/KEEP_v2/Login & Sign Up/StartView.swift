@@ -8,44 +8,48 @@
 import SwiftUI
 
 struct StartView: View {
+    @State private var isActive = false
     var body: some View {
-        Spacer()
-        
-        Image("keeplogo")
-            .resizable()
-            .scaledToFit()
-            .frame(width:187,height: 84)
-            .padding(.bottom, 256)
-        
-        
-        VStack(spacing: 13) {
-            Button {
-                
-            } label: {
-                Rectangle()
-                    .frame(width:354, height:62)
-                    .cornerRadius(15)
-                    .foregroundColor(mainColor)
-                    .overlay {
-                        Text("시작하기")
-                            .font(.system(size: 25, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-            }
-            HStack {
-                Text("이미 계정이 있으신가요?")
-                    .foregroundColor(textColor)
-                    .font(.system(size: 16, weight: .regular))
-                Button {
-                    
-                } label: {
-                    Text("로그인하기")
+        NavigationStack {
+            Spacer()
+            
+            Image("keeplogo")
+                .resizable()
+                .scaledToFit()
+                .frame(width:187,height: 84)
+                .padding(.bottom, 256)
+            
+            
+            VStack(spacing: 13) {
+                NavigationLink(destination: SelectView(), isActive: $isActive) {
+                    Rectangle()
+                        .frame(width: 354, height: 62)
+                        .cornerRadius(15)
                         .foregroundColor(mainColor)
-                        .font(.system(size: 16, weight: .bold))
+                        .overlay {
+                            Text("시작하기")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                }
+                .simultaneousGesture(TapGesture().onEnded {
+                    isActive = true
+                })
+                HStack {
+                    Text("이미 계정이 있으신가요?")
+                        .foregroundColor(textColor)
+                        .font(.system(size: 16, weight: .regular))
+                    Button {
+                        
+                    } label: {
+                        Text("로그인하기")
+                            .foregroundColor(mainColor)
+                            .font(.system(size: 16, weight: .bold))
+                    }
                 }
             }
+            .padding(.bottom, 32)
         }
-        .padding(.bottom, 32)
     }
 }
 
