@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct FirstView: View {
-    @State private var email: String = ""
     @State private var name: String = ""
-    @State private var password: String = ""
-    @State private var repassword: String = ""
     var body: some View {
         Spacer()
         VStack(alignment:.leading, spacing:17) {

@@ -1,5 +1,5 @@
 //
-//  SecondView.swift
+//  ThirdView.swift
 //  KEEP_v2
 //
 //  Created by bibiga on 9/5/24.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct SecondView: View {
-    @State private var email: String = ""
+struct ThirdView: View {
+    @State private var password: String = ""
+    @State private var repassword: String = ""
     var body: some View {
         Spacer()
         VStack(alignment:.leading, spacing:17) {
@@ -16,30 +17,37 @@ struct SecondView: View {
                 Text("회원가입을 위해")
                     .font(.system(size: 23, weight: .semibold))
                     .foregroundColor(textColor)
-                Text("이메일을 입력해 주세요")
+                Text("비밀번호를 입력해 주세요")
                     .font(.system(size: 23, weight: .semibold))
                     .foregroundColor(textColor)
             }
             VStack(alignment: .leading) {
-                Text("올바른 형식으로 입력해 주세요.")
-                    .font(.system(size: 15, weight: .light))
-                    .foregroundColor(Color(hex: "#A6ABAF"))
-                Text("ex) @dgsw.hs.kr 형식")
+                Text("비밀번호 인증까지 진행하여 주세요.")
                     .font(.system(size: 15, weight: .light))
                     .foregroundColor(Color(hex: "#A6ABAF"))
             }
-            .padding(.bottom,20)
-            VStack {
-                TextField("이메일을 입력해 주세요", text: $email)
-                    .frame(width:299)
-                    .foregroundColor(mainColor)
-                Rectangle()
-                    .frame(width:299, height:2)
-                    .foregroundColor(mainColor)
+            .padding(.bottom,30)
+            VStack(spacing:13) {
+                VStack {
+                    TextField("비밀번호 입력", text: $password)
+                        .frame(width:299)
+                        .foregroundColor(mainColor)
+                    Rectangle()
+                        .frame(width:299, height:2)
+                        .foregroundColor(mainColor)
+                }
+                VStack {
+                    TextField("비밀번호 확인", text: $repassword)
+                        .frame(width:299)
+                        .foregroundColor(mainColor)
+                    Rectangle()
+                        .frame(width:299, height:2)
+                        .foregroundColor(mainColor)
+                }
             }
         }
         Spacer()
-            .frame(height:322)
+            .frame(height:280)
         Button {
             
         } label: {
@@ -58,5 +66,5 @@ struct SecondView: View {
 }
 
 #Preview {
-    SecondView()
+    ThirdView()
 }
