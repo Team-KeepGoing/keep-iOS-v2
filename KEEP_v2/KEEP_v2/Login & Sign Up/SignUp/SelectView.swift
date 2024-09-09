@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SelectView: View {
     @ObservedObject var viewModel: SignUpViewModel
-    
     @State private var selectedButton: Int? = nil
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -28,23 +27,23 @@ struct SelectView: View {
                             .font(.system(size: 15, weight: .light))
                             .foregroundColor(Color(hex: "#A6ABAF"))
                     }
-                    .padding(.leading,20)
+                    .padding(.leading, 20)
                     
-                    HStack(spacing:30) {
+                    HStack(spacing: 30) {
                         Button {
                             selectedButton = (selectedButton == 1) ? nil : 1
                         } label: {
                             Rectangle()
                                 .foregroundColor(selectedButton == 1 ? mainColor : Color.white)
-                                .frame(width:153, height: 159)
+                                .frame(width: 153, height: 159)
                                 .cornerRadius(15)
                                 .shadow(radius: 4)
                                 .overlay {
-                                    VStack(spacing:0) {
+                                    VStack(spacing: 0) {
                                         Image(selectedButton == 1 ? "whiteStudent" : "blueStudent")
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width:93)
+                                            .frame(width: 93)
                                         Text("학생")
                                             .foregroundColor(selectedButton == 1 ? Color.white : mainColor)
                                             .font(.system(size: 20, weight: .bold))
@@ -56,32 +55,30 @@ struct SelectView: View {
                         } label: {
                             Rectangle()
                                 .foregroundColor(selectedButton == 2 ? mainColor : Color.white)
-                                .frame(width:153, height: 159)
+                                .frame(width: 153, height: 159)
                                 .cornerRadius(15)
                                 .shadow(radius: 4)
                                 .overlay {
-                                    VStack(spacing:12) {
+                                    VStack(spacing: 12) {
                                         Image(selectedButton == 2 ? "whiteTeacher" : "blueTeacher")
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width:81)
+                                            .frame(width: 81)
                                         Text("교사")
                                             .foregroundColor(selectedButton == 2 ? Color.white : mainColor)
                                             .font(.system(size: 20, weight: .bold))
                                     }
-                                    .padding(.top,10)
+                                    .padding(.top, 10)
                                 }
                         }
                     }
                 }
                 
                 Spacer()
-
-                Button {
-                    viewModel.signUpData.isTeacher = (selectedButton == 2)
-                } label: {
+                
+                NavigationLink(destination: FirstView(viewModel: viewModel)) {
                     Rectangle()
-                        .frame(width:354, height:62)
+                        .frame(width: 354, height: 62)
                         .cornerRadius(15)
                         .foregroundColor(mainColor)
                         .overlay {
@@ -91,6 +88,10 @@ struct SelectView: View {
                         }
                 }
                 .padding(.bottom, 66)
+                .disabled(selectedButton == nil)
+                .simultaneousGesture(TapGesture().onEnded {
+                    viewModel.signUpData.isTeacher = (selectedButton == 2)
+                })
             }
             .navigationBarHidden(true)
         }
