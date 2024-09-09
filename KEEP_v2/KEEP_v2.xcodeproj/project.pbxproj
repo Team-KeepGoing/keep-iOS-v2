@@ -17,6 +17,8 @@
 		4D3A8A822C89BD0700AF486F /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A812C89BD0700AF486F /* SecondView.swift */; };
 		4D3A8A842C89BD2300AF486F /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A832C89BD2300AF486F /* ThirdView.swift */; };
 		4DF478582C89C3DA0078111B /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF478572C89C3DA0078111B /* SelectView.swift */; };
+		4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785D2C8ED76A0078111B /* SignUpData.swift */; };
+		4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		4D3A8A812C89BD0700AF486F /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		4D3A8A832C89BD2300AF486F /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
 		4DF478572C89C3DA0078111B /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
+		4DF4785D2C8ED76A0078111B /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
+		4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 				4D3A8A7F2C89BD0000AF486F /* FirstView.swift */,
 				4D3A8A812C89BD0700AF486F /* SecondView.swift */,
 				4D3A8A832C89BD2300AF486F /* ThirdView.swift */,
+				4DF4785D2C8ED76A0078111B /* SignUpData.swift */,
+				4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -173,8 +179,10 @@
 			files = (
 				4D3A8A842C89BD2300AF486F /* ThirdView.swift in Sources */,
 				4D3A8A822C89BD0700AF486F /* SecondView.swift in Sources */,
+				4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */,
 				4D3A8A7C2C89A77200AF486F /* StartView.swift in Sources */,
 				4D3A8A802C89BD0000AF486F /* FirstView.swift in Sources */,
+				4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */,
 				4D3A8A7E2C89A9CD00AF486F /* Color.swift in Sources */,
 				4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */,
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
