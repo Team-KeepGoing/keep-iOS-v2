@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StartView: View {
     @State private var isActive = false
+    @StateObject private var viewModel = SignUpViewModel()
+    
     var body: some View {
         NavigationStack {
             Spacer()
@@ -21,7 +23,7 @@ struct StartView: View {
             
             
             VStack(spacing: 13) {
-                NavigationLink(destination: SelectView(), isActive: $isActive) {
+                NavigationLink(destination: SelectView(viewModel: viewModel)) {
                     Rectangle()
                         .frame(width: 354, height: 62)
                         .cornerRadius(15)

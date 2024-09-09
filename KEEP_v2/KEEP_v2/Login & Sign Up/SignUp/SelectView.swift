@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SelectView: View {
-    @State private var teacher: Bool = false
+    @ObservedObject var viewModel: SignUpViewModel
+    
     @State private var selectedButton: Int? = nil
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -74,9 +76,9 @@ struct SelectView: View {
                 }
                 
                 Spacer()
-                
+
                 Button {
-                    
+                    viewModel.signUpData.isTeacher = (selectedButton == 2)
                 } label: {
                     Rectangle()
                         .frame(width:354, height:62)
@@ -96,5 +98,5 @@ struct SelectView: View {
 }
 
 #Preview {
-    SelectView()
+    SelectView(viewModel: SignUpViewModel())
 }

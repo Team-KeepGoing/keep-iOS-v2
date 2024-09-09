@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ThirdView: View {
+    @StateObject var viewModel: SignUpViewModel
     @State private var password: String = ""
     @State private var repassword: String = ""
     var body: some View {
@@ -49,10 +50,14 @@ struct ThirdView: View {
         Spacer()
             .frame(height:280)
         Button {
-            
+            if password == repassword {
+                viewModel.signUpData.password = password
+            } else {
+                print("Passwords do not match")
+            }
         } label: {
             Rectangle()
-                .frame(width:354, height:62)
+                .frame(width: 354, height: 62)
                 .cornerRadius(15)
                 .foregroundColor(mainColor)
                 .overlay {
@@ -66,5 +71,5 @@ struct ThirdView: View {
 }
 
 #Preview {
-    ThirdView()
+    ThirdView(viewModel: SignUpViewModel())
 }

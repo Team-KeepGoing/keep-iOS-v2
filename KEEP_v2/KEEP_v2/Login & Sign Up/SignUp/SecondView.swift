@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SecondView: View {
+    @StateObject var viewModel: SignUpViewModel
     @State private var email: String = ""
     var body: some View {
         Spacer()
@@ -40,11 +41,9 @@ struct SecondView: View {
         }
         Spacer()
             .frame(height:322)
-        Button {
-            
-        } label: {
+        NavigationLink(destination: ThirdView(viewModel: viewModel)) {
             Rectangle()
-                .frame(width:354, height:62)
+                .frame(width: 354, height: 62)
                 .cornerRadius(15)
                 .foregroundColor(mainColor)
                 .overlay {
@@ -58,5 +57,5 @@ struct SecondView: View {
 }
 
 #Preview {
-    SecondView()
+    SecondView(viewModel: SignUpViewModel())
 }
