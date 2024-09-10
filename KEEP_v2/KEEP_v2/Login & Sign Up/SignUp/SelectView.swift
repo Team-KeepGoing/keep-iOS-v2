@@ -93,7 +93,6 @@ struct SelectView: View {
                     viewModel.signUpData.isTeacher = (selectedButton == 2)
                 })
             }
-            .navigationBarHidden(true)
         }
     }
 }

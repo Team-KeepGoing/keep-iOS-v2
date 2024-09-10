@@ -20,6 +20,7 @@
 		4DB0AB9F2C8FDB7000144483 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */; };
 		4DB0ABA22C8FDD8100144483 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA12C8FDD8100144483 /* API.swift */; };
 		4DB0ABA42C8FE14500144483 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */; };
+		4DB0ABA72C8FE34D00144483 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA62C8FE34D00144483 /* LoginView.swift */; };
 		4DF478582C89C3DA0078111B /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF478572C89C3DA0078111B /* SelectView.swift */; };
 		4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785D2C8ED76A0078111B /* SignUpData.swift */; };
 		4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */; };
@@ -40,6 +41,7 @@
 		4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		4DB0ABA12C8FDD8100144483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		4DB0ABA62C8FE34D00144483 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4DF478572C89C3DA0078111B /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
 		4DF4785D2C8ED76A0078111B /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				4D3A8A7B2C89A77200AF486F /* StartView.swift */,
+				4DB0ABA52C8FE33D00144483 /* Login */,
 				4D3A8A852C89BD2600AF486F /* SignUp */,
 			);
 			path = "Login & Sign Up";
@@ -134,6 +137,14 @@
 			children = (
 			);
 			path = Teacher;
+			sourceTree = "<group>";
+		};
+		4DB0ABA52C8FE33D00144483 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4DB0ABA62C8FE34D00144483 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +231,7 @@
 				4D3A8A802C89BD0000AF486F /* FirstView.swift in Sources */,
 				4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */,
 				4D3A8A7E2C89A9CD00AF486F /* Color.swift in Sources */,
+				4DB0ABA72C8FE34D00144483 /* LoginView.swift in Sources */,
 				4DB0AB9F2C8FDB7000144483 /* UserHomeView.swift in Sources */,
 				4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */,
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
