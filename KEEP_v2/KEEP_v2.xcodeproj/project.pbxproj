@@ -17,10 +17,11 @@
 		4D3A8A822C89BD0700AF486F /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A812C89BD0700AF486F /* SecondView.swift */; };
 		4D3A8A842C89BD2300AF486F /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A832C89BD2300AF486F /* ThirdView.swift */; };
 		4DB0AB9C2C8FC09000144483 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4DB0AB9B2C8FC09000144483 /* Alamofire */; };
-		4DB0AB9F2C8FDB7000144483 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */; };
 		4DB0ABA22C8FDD8100144483 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA12C8FDD8100144483 /* API.swift */; };
 		4DB0ABA42C8FE14500144483 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */; };
 		4DB0ABA72C8FE34D00144483 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA62C8FE34D00144483 /* LoginView.swift */; };
+		4DB0ABA92C8FE8D500144483 /* TeacherHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA82C8FE8D500144483 /* TeacherHomeView.swift */; };
+		4DB0ABAB2C8FE8F600144483 /* StudentHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABAA2C8FE8F600144483 /* StudentHomeView.swift */; };
 		4DF478582C89C3DA0078111B /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF478572C89C3DA0078111B /* SelectView.swift */; };
 		4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785D2C8ED76A0078111B /* SignUpData.swift */; };
 		4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */; };
@@ -38,10 +39,11 @@
 		4D3A8A812C89BD0700AF486F /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		4D3A8A832C89BD2300AF486F /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
 		4DB0AB9D2C8FC1B800144483 /* KEEP-v2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "KEEP-v2-Info.plist"; sourceTree = SOURCE_ROOT; };
-		4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		4DB0ABA12C8FDD8100144483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		4DB0ABA62C8FE34D00144483 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4DB0ABA82C8FE8D500144483 /* TeacherHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomeView.swift; sourceTree = "<group>"; };
+		4DB0ABAA2C8FE8F600144483 /* StudentHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentHomeView.swift; sourceTree = "<group>"; };
 		4DF478572C89C3DA0078111B /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
 		4DF4785D2C8ED76A0078111B /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -85,7 +87,7 @@
 				4D3A8A7D2C89A9CD00AF486F /* Color.swift */,
 				4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */,
 				4DB0ABA02C8FDCB600144483 /* Teacher */,
-				4DB0AB972C8FBFCF00144483 /* User */,
+				4DB0ABAC2C8FE8FB00144483 /* Student */,
 				4D3A8A7A2C89A75900AF486F /* Login & Sign Up */,
 				4D3A8A702C89A41600AF486F /* Assets.xcassets */,
 				4D3A8A722C89A41600AF486F /* Preview Content */,
@@ -124,17 +126,10 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
-		4DB0AB972C8FBFCF00144483 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
 		4DB0ABA02C8FDCB600144483 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				4DB0ABA82C8FE8D500144483 /* TeacherHomeView.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -145,6 +140,14 @@
 				4DB0ABA62C8FE34D00144483 /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4DB0ABAC2C8FE8FB00144483 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				4DB0ABAA2C8FE8F600144483 /* StudentHomeView.swift */,
+			);
+			path = Student;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D3A8A842C89BD2300AF486F /* ThirdView.swift in Sources */,
+				4DB0ABAB2C8FE8F600144483 /* StudentHomeView.swift in Sources */,
 				4D3A8A822C89BD0700AF486F /* SecondView.swift in Sources */,
 				4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */,
 				4DB0ABA42C8FE14500144483 /* UserDefaultsManager.swift in Sources */,
@@ -232,8 +236,8 @@
 				4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */,
 				4D3A8A7E2C89A9CD00AF486F /* Color.swift in Sources */,
 				4DB0ABA72C8FE34D00144483 /* LoginView.swift in Sources */,
-				4DB0AB9F2C8FDB7000144483 /* UserHomeView.swift in Sources */,
 				4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */,
+				4DB0ABA92C8FE8D500144483 /* TeacherHomeView.swift in Sources */,
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
 				4DB0ABA22C8FDD8100144483 /* API.swift in Sources */,
 				4D3A8A6D2C89A41400AF486F /* KEEP_v2App.swift in Sources */,

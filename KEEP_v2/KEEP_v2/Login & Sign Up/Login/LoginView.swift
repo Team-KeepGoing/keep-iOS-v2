@@ -50,23 +50,58 @@ struct LoginView: View {
         Spacer()
             .frame(height:280)
         Button {
-            
+            login()
         } label: {
             Rectangle()
                 .frame(width: 354, height: 62)
                 .cornerRadius(15)
                 .foregroundColor(mainColor)
                 .overlay {
-                    Text("다음")
+                    Text("로그인")
                         .font(.system(size: 25, weight: .bold))
                         .foregroundColor(.white)
                 }
         }
         .padding(.bottom, 66)
-        NavigationLink(destination: UserHomeView(), isActive: $showHomeView) {
+        NavigationLink(destination: StudentHomeView(), isActive: $showHomeView) {
             EmptyView()
         }
     }
+    
+    func login() {
+        let parameters: [String: Any] = [
+            "email": email,
+            "password": password
+        ]
+        
+        let url = LoginAPI
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                print("응답 상태: \(response.response?.statusCode ?? -1)")
+                print("응답 데이터: \(response.data ?? Data())")
+                print("응답 오류: \(response.error?.localizedDescription ?? "없음")")
+                
+                switch response.result {
+                case .success(let value):
+                    if let json = value as? [String: Any],
+                       let token = json["token"] as? String {
+                        print("로그인 성공: \(json)")
+                        
+                        UserDefaultsManager.shared.saveToken(token: token)
+                        
+                        DispatchQueue.main.async {
+                            showHomeView = true
+                        }
+                    } else {
+                        print("응답 데이터 형식이 올바르지 않습니다.")
+                    }
+                case .failure(let error):
+                    print("로그인 실패: \(error.localizedDescription)")
+                }
+            }
+    }
+    
 }
 
 #Preview {

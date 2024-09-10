@@ -71,7 +71,7 @@ struct ThirdView: View {
                 }
         }
         .padding(.bottom, 66)
-        NavigationLink(destination: UserHomeView(), isActive: $showHomeView) {
+        NavigationLink(destination: StudentHomeView(), isActive: $showHomeView) {
             EmptyView()
         }
     }
