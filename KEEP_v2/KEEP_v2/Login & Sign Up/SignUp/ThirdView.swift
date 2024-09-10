@@ -13,6 +13,7 @@ struct ThirdView: View {
     @State private var password: String = ""
     @State private var repassword: String = ""
     @State private var showHomeView = false
+    
     var body: some View {
         Spacer()
         VStack(alignment:.leading, spacing:17) {
@@ -74,6 +75,7 @@ struct ThirdView: View {
             EmptyView()
         }
     }
+    
     func signUp() {
         let signUpData = viewModel.signUpData
         
@@ -90,9 +92,17 @@ struct ThirdView: View {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
-                    print("회원가입 성공: \(value)")
-                    DispatchQueue.main.async {
-                        showHomeView = true
+                    if let json = value as? [String: Any],
+                       let data = json["data"] as? [String: Any],
+                       let token = data["token"] as? String {
+                        print("회원가입 성공: \(value)")
+                        
+                        // UserDefaultsManager를 사용하여 토큰 저장
+                        UserDefaultsManager.shared.saveToken(token: token)
+                        
+                        DispatchQueue.main.async {
+                            showHomeView = true
+                        }
                     }
                 case .failure(let error):
                     print("회원가입 실패: \(error.localizedDescription)")
@@ -104,3 +114,4 @@ struct ThirdView: View {
 #Preview {
     ThirdView(viewModel: SignUpViewModel())
 }
+

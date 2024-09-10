@@ -19,6 +19,7 @@
 		4DB0AB9C2C8FC09000144483 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4DB0AB9B2C8FC09000144483 /* Alamofire */; };
 		4DB0AB9F2C8FDB7000144483 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */; };
 		4DB0ABA22C8FDD8100144483 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA12C8FDD8100144483 /* API.swift */; };
+		4DB0ABA42C8FE14500144483 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */; };
 		4DF478582C89C3DA0078111B /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF478572C89C3DA0078111B /* SelectView.swift */; };
 		4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785D2C8ED76A0078111B /* SignUpData.swift */; };
 		4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */; };
@@ -38,6 +39,7 @@
 		4DB0AB9D2C8FC1B800144483 /* KEEP-v2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "KEEP-v2-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4DB0AB9E2C8FDB7000144483 /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		4DB0ABA12C8FDD8100144483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		4DF478572C89C3DA0078111B /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
 		4DF4785D2C8ED76A0078111B /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -75,10 +77,11 @@
 			isa = PBXGroup;
 			children = (
 				4DB0AB9D2C8FC1B800144483 /* KEEP-v2-Info.plist */,
-				4D3A8A6C2C89A41400AF486F /* KEEP_v2App.swift */,
 				4DB0ABA12C8FDD8100144483 /* API.swift */,
+				4D3A8A6C2C89A41400AF486F /* KEEP_v2App.swift */,
 				4D3A8A6E2C89A41400AF486F /* ContentView.swift */,
 				4D3A8A7D2C89A9CD00AF486F /* Color.swift */,
+				4DB0ABA32C8FE14500144483 /* UserDefaultsManager.swift */,
 				4DB0ABA02C8FDCB600144483 /* Teacher */,
 				4DB0AB972C8FBFCF00144483 /* User */,
 				4D3A8A7A2C89A75900AF486F /* Login & Sign Up */,
@@ -212,6 +215,7 @@
 				4D3A8A842C89BD2300AF486F /* ThirdView.swift in Sources */,
 				4D3A8A822C89BD0700AF486F /* SecondView.swift in Sources */,
 				4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */,
+				4DB0ABA42C8FE14500144483 /* UserDefaultsManager.swift in Sources */,
 				4D3A8A7C2C89A77200AF486F /* StartView.swift in Sources */,
 				4D3A8A802C89BD0000AF486F /* FirstView.swift in Sources */,
 				4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */,
