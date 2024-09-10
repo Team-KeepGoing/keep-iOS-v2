@@ -41,9 +41,7 @@ struct StartView: View {
                     Text("이미 계정이 있으신가요?")
                         .foregroundColor(textColor)
                         .font(.system(size: 16, weight: .regular))
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: LoginView()) {
                         Text("로그인하기")
                             .foregroundColor(mainColor)
                             .font(.system(size: 16, weight: .bold))

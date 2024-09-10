@@ -33,7 +33,7 @@ struct ThirdView: View {
             .padding(.bottom,30)
             VStack(spacing:13) {
                 VStack {
-                    TextField("비밀번호 입력", text: $password)
+                    SecureField("비밀번호 입력", text: $password)
                         .frame(width:299)
                         .foregroundColor(mainColor)
                     Rectangle()
@@ -41,7 +41,7 @@ struct ThirdView: View {
                         .foregroundColor(mainColor)
                 }
                 VStack {
-                    TextField("비밀번호 확인", text: $repassword)
+                    SecureField("비밀번호 확인", text: $repassword)
                         .frame(width:299)
                         .foregroundColor(mainColor)
                     Rectangle()
@@ -97,7 +97,6 @@ struct ThirdView: View {
                        let token = data["token"] as? String {
                         print("회원가입 성공: \(value)")
                         
-                        // UserDefaultsManager를 사용하여 토큰 저장
                         UserDefaultsManager.shared.saveToken(token: token)
                         
                         DispatchQueue.main.async {
