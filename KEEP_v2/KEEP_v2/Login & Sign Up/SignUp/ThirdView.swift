@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ThirdView: View {
     @StateObject var viewModel: SignUpViewModel
     @State private var password: String = ""
     @State private var repassword: String = ""
+    @State private var showHomeView = false
     var body: some View {
         Spacer()
         VStack(alignment:.leading, spacing:17) {
@@ -52,6 +54,7 @@ struct ThirdView: View {
         Button {
             if password == repassword {
                 viewModel.signUpData.password = password
+                signUp()
             } else {
                 print("Passwords do not match")
             }
@@ -67,6 +70,34 @@ struct ThirdView: View {
                 }
         }
         .padding(.bottom, 66)
+        NavigationLink(destination: UserHomeView(), isActive: $showHomeView) {
+            EmptyView()
+        }
+    }
+    func signUp() {
+        let signUpData = viewModel.signUpData
+        
+        let parameters: [String: Any] = [
+            "email": signUpData.email,
+            "password": signUpData.password,
+            "name": signUpData.name,
+            "teacher": signUpData.isTeacher
+        ]
+        
+        let url = SignUpAPI
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    print("회원가입 성공: \(value)")
+                    DispatchQueue.main.async {
+                        showHomeView = true
+                    }
+                case .failure(let error):
+                    print("회원가입 실패: \(error.localizedDescription)")
+                }
+            }
     }
 }
 
