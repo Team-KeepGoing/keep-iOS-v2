@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectView: View {
     @ObservedObject var viewModel: SignUpViewModel
     @State private var selectedButton: Int? = nil
+    @State private var showAlert: Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -90,8 +91,19 @@ struct SelectView: View {
                 .padding(.bottom, 66)
                 .disabled(selectedButton == nil)
                 .simultaneousGesture(TapGesture().onEnded {
-                    viewModel.signUpData.isTeacher = (selectedButton == 2)
+                    if selectedButton == nil {
+                        showAlert = true
+                    } else {
+                        viewModel.signUpData.isTeacher = (selectedButton == 2)
+                    }
                 })
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("유형 선택"),
+                    message: Text("유형을 선택해 주세요."),
+                    dismissButton: .default(Text("확인"))
+                )
             }
         }
     }
