@@ -53,6 +53,9 @@ struct FirstView: View {
                 }
         }
         .padding(.bottom, 66)
+        .simultaneousGesture(TapGesture().onEnded {
+            viewModel.signUpData.name = name
+        })
     }
 }
 

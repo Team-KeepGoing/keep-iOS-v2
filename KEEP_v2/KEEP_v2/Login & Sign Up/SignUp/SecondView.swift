@@ -53,6 +53,9 @@ struct SecondView: View {
                 }
         }
         .padding(.bottom, 66)
+        .simultaneousGesture(TapGesture().onEnded {
+            viewModel.signUpData.email = email
+        })
     }
 }
 
