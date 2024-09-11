@@ -9,7 +9,12 @@ import SwiftUI
 
 struct TeacherHomeView: View {
     var body: some View {
-        Text("Teacher")
+        NavigationStack {
+            VStack {
+                Text("Teacher")
+            }
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
 

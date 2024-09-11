@@ -9,7 +9,14 @@ import SwiftUI
 
 struct StudentHomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                Color(hex:"F9FAFC")
+                    .edgesIgnoringSafeArea(.all)
+                
+            }
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
 
