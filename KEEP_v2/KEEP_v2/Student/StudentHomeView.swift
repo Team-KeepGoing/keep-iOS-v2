@@ -88,69 +88,67 @@ struct StudentHomeView: View {
                                     .font(.system(size: 17, weight: .semibold))
                                     .foregroundColor(textColor)
                                     .padding(.leading,10)
-                                NavigationLink(destination: QrView()) {
-                                    Rectangle()
-                                        .frame(width: 155, height: 191)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(20)
-                                        .shadow(radius: 3, x: 3, y:3)
-                                        .overlay {
-                                            VStack(spacing:25) {
-                                                HStack(spacing: 31) {
-                                                    Button {
-                                                        
-                                                    } label: {
-                                                        VStack(spacing: 5) {
-                                                            Image("good")
-                                                                .resizable()
-                                                                .frame(width:38, height: 49)
-                                                            Text("정상")
-                                                                .foregroundColor(mainColor)
-                                                                .font(.system(size: 10.5, weight: .semibold))
-                                                        }
-                                                    }
-                                                    Button {
-                                                        
-                                                    } label: {
-                                                        VStack(spacing:9) {
-                                                            Image("sick")
-                                                                .resizable()
-                                                                .frame(width:42, height: 42)
-                                                            Text("통증")
-                                                                .foregroundColor(mainColor)
-                                                                .font(.system(size: 10.5, weight: .semibold))
-                                                        }
+                                Rectangle()
+                                    .frame(width: 155, height: 191)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(20)
+                                    .shadow(radius: 3, x: 3, y:3)
+                                    .overlay {
+                                        VStack(spacing:25) {
+                                            HStack(spacing: 31) {
+                                                Button {
+                                                    
+                                                } label: {
+                                                    VStack(spacing: 5) {
+                                                        Image("good")
+                                                            .resizable()
+                                                            .frame(width:38, height: 49)
+                                                        Text("정상")
+                                                            .foregroundColor(mainColor)
+                                                            .font(.system(size: 10.5, weight: .semibold))
                                                     }
                                                 }
-                                                HStack(spacing: 31) {
-                                                    Button {
-                                                        
-                                                    } label: {
-                                                        VStack(spacing: 8) {
-                                                            Image("medc")
-                                                                .resizable()
-                                                                .frame(width:39, height: 39)
-                                                            Text("정상")
-                                                                .foregroundColor(mainColor)
-                                                                .font(.system(size: 10.5, weight: .semibold))
-                                                        }
+                                                Button {
+                                                    
+                                                } label: {
+                                                    VStack(spacing:9) {
+                                                        Image("sick")
+                                                            .resizable()
+                                                            .frame(width:42, height: 42)
+                                                        Text("통증")
+                                                            .foregroundColor(mainColor)
+                                                            .font(.system(size: 10.5, weight: .semibold))
                                                     }
-                                                    Button {
-                                                        
-                                                    } label: {
-                                                        VStack(spacing:11) {
-                                                            Image("wari")
-                                                                .resizable()
-                                                                .frame(width:42, height: 36)
-                                                            Text("통증")
-                                                                .foregroundColor(mainColor)
-                                                                .font(.system(size: 10.5, weight: .semibold))
-                                                        }
+                                                }
+                                            }
+                                            HStack(spacing: 31) {
+                                                Button {
+                                                    
+                                                } label: {
+                                                    VStack(spacing: 8) {
+                                                        Image("medc")
+                                                            .resizable()
+                                                            .frame(width:39, height: 39)
+                                                        Text("정상")
+                                                            .foregroundColor(mainColor)
+                                                            .font(.system(size: 10.5, weight: .semibold))
+                                                    }
+                                                }
+                                                Button {
+                                                    
+                                                } label: {
+                                                    VStack(spacing:11) {
+                                                        Image("wari")
+                                                            .resizable()
+                                                            .frame(width:42, height: 36)
+                                                        Text("통증")
+                                                            .foregroundColor(mainColor)
+                                                            .font(.system(size: 10.5, weight: .semibold))
                                                     }
                                                 }
                                             }
                                         }
-                                }
+                                    }
                             }
                         }
                         .frame(width:500)
@@ -160,7 +158,7 @@ struct StudentHomeView: View {
                             .foregroundColor(.white)
                             .shadow(radius: 3, x: 3, y: 3)
                             .overlay {
-                                VStack(alignment: .leading, spacing: 28) {
+                                VStack(alignment: .leading,spacing: 28) {
                                     HStack(spacing:38) {
                                         Button {
                                             
@@ -219,6 +217,138 @@ struct StudentHomeView: View {
                                     }
                                 }
                             }
+                            .padding(.bottom, 23)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("기기 대여 현황")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(textColor)
+                                .padding(.leading, 10)
+                            Rectangle()
+                                .frame(width:346, height: 338)
+                                .cornerRadius(20)
+                                .foregroundColor(.white)
+                                .shadow(radius: 3, x: 3, y: 3)
+                                .overlay {
+                                    ScrollView {
+                                        VStack(spacing:30) {
+                                            HStack(spacing: 10) {
+                                                Image("macbook")
+                                                    .resizable()
+                                                    .frame(width:70, height: 70)
+                                                VStack(alignment: .leading, spacing: 6) {
+                                                    HStack(spacing: 8) {
+                                                        Text("맥북")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 17, weight: .semibold))
+                                                        Rectangle()
+                                                            .frame(width: 48, height: 15)
+                                                            .cornerRadius(7)
+                                                            .foregroundColor(Color(hex: "F6556C"))
+                                                            .overlay {
+                                                                Text("사용 중")
+                                                                    .foregroundColor(.white)
+                                                                    .font(.system(size: 10, weight: .regular))
+                                                            }
+                                                    }
+                                                    HStack(spacing: 11) {
+                                                        Text("대여 시작일")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("2024.03.28")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                    HStack(spacing: 36) {
+                                                        Text("대여자")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("최**")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                }
+                                            }
+                                            HStack(spacing: 10) {
+                                                Image("macbook")
+                                                    .resizable()
+                                                    .frame(width:70, height: 70)
+                                                VStack(alignment: .leading, spacing: 6) {
+                                                    HStack(spacing: 8) {
+                                                        Text("맥북")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 17, weight: .semibold))
+                                                        Rectangle()
+                                                            .frame(width: 48, height: 15)
+                                                            .cornerRadius(7)
+                                                            .foregroundColor(Color(hex: "F6556C"))
+                                                            .overlay {
+                                                                Text("사용 중")
+                                                                    .foregroundColor(.white)
+                                                                    .font(.system(size: 10, weight: .regular))
+                                                            }
+                                                    }
+                                                    HStack(spacing: 11) {
+                                                        Text("대여 시작일")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("2024.03.28")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                    HStack(spacing: 36) {
+                                                        Text("대여자")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("최**")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                }
+                                            }
+                                            HStack(spacing: 10) {
+                                                Image("macbook")
+                                                    .resizable()
+                                                    .frame(width:70, height: 70)
+                                                VStack(alignment: .leading, spacing: 6) {
+                                                    HStack(spacing: 8) {
+                                                        Text("맥북")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 17, weight: .semibold))
+                                                        Rectangle()
+                                                            .frame(width: 48, height: 15)
+                                                            .cornerRadius(7)
+                                                            .foregroundColor(Color(hex: "F6556C"))
+                                                            .overlay {
+                                                                Text("사용 중")
+                                                                    .foregroundColor(.white)
+                                                                    .font(.system(size: 10, weight: .regular))
+                                                            }
+                                                    }
+                                                    HStack(spacing: 11) {
+                                                        Text("대여 시작일")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("2024.03.28")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                    HStack(spacing: 36) {
+                                                        Text("대여자")
+                                                            .foregroundColor(textColor)
+                                                            .font(.system(size: 12, weight: .regular))
+                                                        Text("최**")
+                                                            .foregroundColor(Color(hex: "4D5967"))
+                                                            .font(.system(size: 13, weight: .medium))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.leading, 40)
+                                        .padding(.top, 30)
+                                    }
+                                }
+                        }
                     } // 스크롤뷰
                 } // VStack
                 .navigationBarBackButtonHidden(true)
