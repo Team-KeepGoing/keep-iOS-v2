@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D192A4D2C92961600B34FCA /* QrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192A4C2C92961600B34FCA /* QrView.swift */; };
 		4D3A8A6D2C89A41400AF486F /* KEEP_v2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A6C2C89A41400AF486F /* KEEP_v2App.swift */; };
 		4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A8A6E2C89A41400AF486F /* ContentView.swift */; };
 		4D3A8A712C89A41600AF486F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D3A8A702C89A41600AF486F /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D192A4C2C92961600B34FCA /* QrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrView.swift; sourceTree = "<group>"; };
 		4D3A8A692C89A41400AF486F /* KEEP_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KEEP_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D3A8A6C2C89A41400AF486F /* KEEP_v2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEEP_v2App.swift; sourceTree = "<group>"; };
 		4D3A8A6E2C89A41400AF486F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				4DB0ABAA2C8FE8F600144483 /* StudentHomeView.swift */,
 				4DB0ABAD2C9163A200144483 /* NoticeView.swift */,
+				4D192A4C2C92961600B34FCA /* QrView.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
 				4DB0ABA22C8FDD8100144483 /* API.swift in Sources */,
 				4D3A8A6D2C89A41400AF486F /* KEEP_v2App.swift in Sources */,
+				4D192A4D2C92961600B34FCA /* QrView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

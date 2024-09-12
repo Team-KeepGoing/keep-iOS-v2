@@ -28,7 +28,8 @@ struct StudentHomeView: View {
                                 .frame(width: 28)
                         }
                     }
-                    Spacer()
+                    .padding(.bottom,10)
+
                     ScrollView {
                         NavigationLink(destination: NoticeView()) {
                             Rectangle()
@@ -52,12 +53,100 @@ struct StudentHomeView: View {
                                     }
                                 }
                         }
+                        .padding(.bottom,10)
+                        HStack(alignment: .top, spacing: 35) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("QR 발급")
+                                    .font(.system(size: 17, weight: .semibold))
+                                    .font(.system(size: 17, weight: .semibold))
+                                    .padding(.leading,10)
+                                NavigationLink(destination: QrView()) {
+                                    Rectangle()
+                                        .frame(width: 155, height: 155)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(20)
+                                        .shadow(radius: 3, x: 3, y:3)
+                                        .overlay {
+                                            Image("QRcode")
+                                                .resizable()
+                                                .frame(width:100,height: 100)
+                                        }
+                                }
+                            }
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("내 상태 전송")
+                                    .font(.system(size: 17, weight: .semibold))
+                                    .padding(.leading,10)
+                                NavigationLink(destination: QrView()) {
+                                    Rectangle()
+                                        .frame(width: 155, height: 191)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(20)
+                                        .shadow(radius: 3, x: 3, y:3)
+                                        .overlay {
+                                            VStack(spacing:25) {
+                                                HStack(spacing: 31) {
+                                                    Button {
+                                                        
+                                                    } label: {
+                                                        VStack(spacing: 5) {
+                                                            Image("good")
+                                                                .resizable()
+                                                                .frame(width:38, height: 49)
+                                                            Text("정상")
+                                                                .foregroundColor(mainColor)
+                                                                .font(.system(size: 10.5, weight: .semibold))
+                                                        }
+                                                    }
+                                                    Button {
+                                                        
+                                                    } label: {
+                                                        VStack(spacing:9) {
+                                                            Image("sick")
+                                                                .resizable()
+                                                                .frame(width:42, height: 42)
+                                                            Text("통증")
+                                                                .foregroundColor(mainColor)
+                                                                .font(.system(size: 10.5, weight: .semibold))
+                                                        }
+                                                    }
+                                                }
+                                                HStack(spacing: 31) {
+                                                    Button {
+                                                        
+                                                    } label: {
+                                                        VStack(spacing: 8) {
+                                                            Image("medc")
+                                                                .resizable()
+                                                                .frame(width:39, height: 39)
+                                                            Text("정상")
+                                                                .foregroundColor(mainColor)
+                                                                .font(.system(size: 10.5, weight: .semibold))
+                                                        }
+                                                    }
+                                                    Button {
+                                                        
+                                                    } label: {
+                                                        VStack(spacing:11) {
+                                                            Image("wari")
+                                                                .resizable()
+                                                                .frame(width:42, height: 36)
+                                                            Text("통증")
+                                                                .foregroundColor(mainColor)
+                                                                .font(.system(size: 10.5, weight: .semibold))
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                        .frame(width:500)
                     }
-                    .padding(.top, 26)
                 }
-                
+                .navigationBarBackButtonHidden(true)
             }
-            .navigationBarBackButtonHidden(true)
         }
     }
 }
