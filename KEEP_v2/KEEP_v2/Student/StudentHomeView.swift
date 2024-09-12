@@ -29,14 +29,14 @@ struct StudentHomeView: View {
                         }
                     }
                     .padding(.bottom,10)
-
+                    
                     ScrollView {
                         NavigationLink(destination: NoticeView()) {
                             Rectangle()
                                 .frame(width: 346, height: 59)
                                 .foregroundColor(.white)
                                 .cornerRadius(14)
-                                .shadow(radius: 3, x: 5, y: 3)
+                                .shadow(radius: 3, x: 3, y: 3)
                                 .overlay {
                                     HStack {
                                         Text("긴급 공지")
@@ -44,7 +44,7 @@ struct StudentHomeView: View {
                                             .foregroundColor(Color(hex: "F6556C"))
                                         Text("확인하러 가기")
                                             .font(.system(size: 18, weight: .medium))
-                                            .foregroundColor(.black)
+                                            .foregroundColor(textColor)
                                         Spacer()
                                             .frame(width:120)
                                         Image(systemName: "greaterthan")
@@ -58,7 +58,7 @@ struct StudentHomeView: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("QR 발급")
                                     .font(.system(size: 17, weight: .semibold))
-                                    .font(.system(size: 17, weight: .semibold))
+                                    .foregroundColor(textColor)
                                     .padding(.leading,10)
                                 NavigationLink(destination: QrView()) {
                                     Rectangle()
@@ -72,10 +72,21 @@ struct StudentHomeView: View {
                                                 .frame(width:100,height: 100)
                                         }
                                 }
+                                HStack(spacing: 0) {
+                                    Text("회원님")
+                                        .font(.system(size: 17, weight: .semibold))
+                                        .foregroundColor(textColor)
+                                        .padding(.leading,10)
+                                    Text("이 대출중인 책")
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundColor(textColor)
+                                }
+                                .padding(.top, 29)
                             }
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("내 상태 전송")
                                     .font(.system(size: 17, weight: .semibold))
+                                    .foregroundColor(textColor)
                                     .padding(.leading,10)
                                 NavigationLink(destination: QrView()) {
                                     Rectangle()
@@ -143,11 +154,76 @@ struct StudentHomeView: View {
                             }
                         }
                         .frame(width:500)
-                    }
-                }
+                        Rectangle()
+                            .frame(width: 346, height: 262)
+                            .cornerRadius(20)
+                            .foregroundColor(.white)
+                            .shadow(radius: 3, x: 3, y: 3)
+                            .overlay {
+                                VStack(alignment: .leading, spacing: 28) {
+                                    HStack(spacing:38) {
+                                        Button {
+                                            
+                                        } label: {
+                                            Image("testbook")
+                                                .resizable()
+                                                .frame(width: 68, height: 100)
+                                        }
+                                        Button {
+                                            
+                                        } label: {
+                                            Image("testbook")
+                                                .resizable()
+                                                .frame(width: 68, height: 100)
+                                        }
+                                        Button {
+                                            
+                                        } label: {
+                                            Image("testbook")
+                                                .resizable()
+                                                .frame(width: 68, height: 100)
+                                        }
+                                    }
+                                    VStack(alignment: .leading, spacing:11) {
+                                        VStack(alignment: .leading, spacing: 3) {
+                                            HStack(spacing:5) {
+                                                Text("나는 너랑 노는게 제일 좋아")
+                                                    .font(.system(size: 17, weight: .semibold))
+                                                    .foregroundColor(textColor)
+                                                Text("D-3")
+                                                    .font(.system(size: 17, weight: .semibold))
+                                                    .foregroundColor(mainColor)
+                                            }
+                                            Text("허태완")
+                                                .font(.system(size: 13, weight: .medium))
+                                                .foregroundColor(Color(hex: "8E98A8"))
+                                        }
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            HStack(spacing: 10) {
+                                                Text("대출일")
+                                                    .font(.system(size: 13, weight: .regular))
+                                                    .foregroundColor(textColor)
+                                                Text("2024.03.28")
+                                                    .font(.system(size: 13, weight: .medium))
+                                                    .foregroundColor(Color(hex: "3182F7"))
+                                            }
+                                            HStack(spacing: 10) {
+                                                Text("반납 예정일")
+                                                    .font(.system(size: 13, weight: .regular))
+                                                    .foregroundColor(textColor)
+                                                Text("2024.04.11")
+                                                    .font(.system(size: 13, weight: .medium))
+                                                    .foregroundColor(Color(hex: "F6556C"))
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                    } // 스크롤뷰
+                } // VStack
                 .navigationBarBackButtonHidden(true)
-            }
-        }
+            } // ZStack
+        } // NavigationStack
     }
 }
 
