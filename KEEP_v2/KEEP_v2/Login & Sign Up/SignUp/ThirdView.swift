@@ -9,10 +9,10 @@ import SwiftUI
 import Alamofire
 
 struct ThirdView: View {
+    @Environment(\.dismiss) var dismiss  // dismiss 환경 변수
     @StateObject var viewModel: SignUpViewModel
     @State private var password: String = ""
     @State private var repassword: String = ""
-    @State private var navigateToHome: Bool = false
     @State private var isTeacher: Bool = false
     @State private var showPasswordMismatchAlert: Bool = false
     
@@ -75,9 +75,6 @@ struct ThirdView: View {
                         }
                 }
                 .padding(.bottom, 66)
-                NavigationLink(destination: destinationView, isActive: $navigateToHome) {
-                    EmptyView()
-                }
             }
             .alert(isPresented: $showPasswordMismatchAlert) {
                 Alert(
@@ -86,14 +83,6 @@ struct ThirdView: View {
                     dismissButton: .default(Text("확인"))
                 )
             }
-        }
-    }
-    
-    private var destinationView: some View {
-        if isTeacher {
-            return AnyView(TeacherHomeView())
-        } else {
-            return AnyView(StudentHomeView())
         }
     }
 
@@ -122,14 +111,24 @@ struct ThirdView: View {
                         UserDefaultsManager.shared.saveToken(token: token)
                         
                         DispatchQueue.main.async {
-                            isTeacher = (teacher == 1)
-                            navigateToHome = true
+                            // 모든 뷰를 종료하고 로그인 화면으로 이동
+                            dismiss()  // 현재 뷰 종료
+                            goToLoginView()
                         }
                     }
                 case .failure(let error):
                     print("회원가입 실패: \(error.localizedDescription)")
                 }
             }
+    }
+    
+    func goToLoginView() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                window.rootViewController = UIHostingController(rootView: LoginView())
+                window.makeKeyAndVisible()
+            }
+        }
     }
 }
 
