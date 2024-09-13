@@ -39,7 +39,7 @@ struct TeacherHomeView: View {
                                     Image("blueStudent")
                                         .resizable()
                                         .frame(width: 93, height: 93)
-                                    Text("긴급 공지")
+                                    Text("학생 정보")
                                         .foregroundColor(mainColor)
                                         .font(.system(size: 20, weight: .bold))
                                 }
