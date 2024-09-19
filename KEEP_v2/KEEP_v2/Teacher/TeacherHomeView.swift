@@ -45,7 +45,7 @@ struct TeacherHomeView: View {
                                 }
                             }
                     }
-                    NavigationLink(destination: StudentSearchView()) {
+                    NavigationLink(destination: NoticeWriteView()) {
                         Rectangle()
                             .frame(width: 153, height: 159)
                             .foregroundColor(.white)
