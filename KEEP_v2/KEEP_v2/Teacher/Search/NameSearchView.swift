@@ -16,6 +16,7 @@ struct NameSearchView: View {
                 Text("'김주환' 학생 검색 결과")
                     .font(.system(size: 25, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(textColor)
                     .padding(.leading, 36)
                     .padding(.top, 50)
                 ScrollView {
@@ -31,6 +32,7 @@ struct NameSearchView: View {
                                         .resizable()
                                         .frame(width: 81.7,height: 84)
                                     Text("김주환")
+                                        .foregroundColor(textColor)
                                         .font(.system(size: 20, weight: .bold))
                                     Text("2학년 2반 8번")
                                         .font(.system(size: 17, weight: .regular))
