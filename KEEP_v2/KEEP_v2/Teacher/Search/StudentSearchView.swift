@@ -91,7 +91,7 @@ struct StudentSearchView: View {
                     .frame(width: 330, height: 100)
                 }
             }
-            NavigationLink(destination: NameSearchView()) {
+            NavigationLink(destination: StudentInfoView()) {
                 Rectangle()
                     .frame(width: 354, height: 62)
                     .cornerRadius(15)

@@ -32,6 +32,7 @@
 		4DF478582C89C3DA0078111B /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF478572C89C3DA0078111B /* SelectView.swift */; };
 		4DF4785E2C8ED76A0078111B /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785D2C8ED76A0078111B /* SignUpData.swift */; };
 		4DF478602C8ED7810078111B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */; };
+		60B9E1B62CA1A4E400B2F371 /* StudentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9E1B52CA1A4E400B2F371 /* StudentInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		4DF478572C89C3DA0078111B /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
 		4DF4785D2C8ED76A0078111B /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		4DF4785F2C8ED7810078111B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		60B9E1B52CA1A4E400B2F371 /* StudentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				4D192A4F2C93053E00B34FCA /* StudentSearchView.swift */,
 				4D5DA8412CA057A800EB560D /* NameSearchView.swift */,
+				60B9E1B52CA1A4E400B2F371 /* StudentInfoView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				4DB0ABA72C8FE34D00144483 /* LoginView.swift in Sources */,
 				4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */,
 				4DBE41762C9C103B00C06E87 /* NoticeDetailView.swift in Sources */,
+				60B9E1B62CA1A4E400B2F371 /* StudentInfoView.swift in Sources */,
 				4DB0ABA92C8FE8D500144483 /* TeacherHomeView.swift in Sources */,
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
 				4DB0ABA22C8FDD8100144483 /* API.swift in Sources */,
