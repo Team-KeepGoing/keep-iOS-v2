@@ -7,11 +7,13 @@
 
 import SwiftUI
 import CoreImage.CIFilterBuiltins
+import Alamofire
 
 struct QrView: View {
-    
     @State private var qrCodeImage: Image?
+    @State private var errorMessage: String?
     
+    @State private var qrCodeGenerated: Bool = false
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -39,16 +41,15 @@ struct QrView: View {
                         .interpolation(.none)
                         .scaledToFit()
                         .frame(width: 200, height: 200)
+                } else if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
                 } else {
                     Text("QR 코드가 생성되지 않았습니다.")
                 }
                 
                 Button {
-                    if let email = UserDefaults.standard.string(forKey: "email") {
-                        generateQRCode(from: email)
-                    } else {
-                        print("이메일이 저장되어 있지 않습니다.")
-                    }
+                    fetchUserEmailAndGenerateQRCode()
                 } label: {
                     Text("QR코드 생성")
                         .foregroundColor(mainColor)
@@ -58,23 +59,49 @@ struct QrView: View {
             }
             Spacer()
                 .frame(height: 100)
-            
+        }
+    }
+    
+    func fetchUserEmailAndGenerateQRCode() {
+        guard let token = UserDefaultsManager.shared.loadToken() else {
+            print("토큰이 저장되어 있지 않습니다.")
+            errorMessage = "토큰이 저장되어 있지 않습니다."
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(UserInfoAPI, method: .get, headers: headers).responseDecodable(of: UserInfo.self) { response in
+            switch response.result {
+            case .success(let userInfo):
+                generateQRCode(from: userInfo.email)
+                
+            case .failure(let error):
+                print("유저 정보를 불러오는 중 오류 발생: \(error)")
+                errorMessage = "유저 정보를 불러오는 중 오류가 발생했습니다."
+            }
         }
     }
     
     func generateQRCode(from string: String) {
-        let filter = CIFilter.qrCodeGenerator() // QR 코드 생성 필터 생성
-        let data = Data(string.utf8) // 입력된 문자열을 데이터로 변환
-        filter.setValue(data, forKey: "inputMessage") // 필터에 데이터를 설정
+        let filter = CIFilter.qrCodeGenerator()
+        let data = Data(string.utf8)
+        filter.setValue(data, forKey: "inputMessage")
         
-        guard let ciImage = filter.outputImage else { return } // 필터에서 출력된 CIImage 가져오기
+        guard let ciImage = filter.outputImage else { return }
         
-        let context = CIContext() // CIContext 생성
-        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return } // CIImage를 CGImage로 변환
+        let context = CIContext()
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return }
         
-        let uiImage = UIImage(cgImage: cgImage) // CGImage로부터 UIImage 생성
-        qrCodeImage = Image(uiImage: uiImage) // UIImage를 SwiftUI의 Image로 변환하여 저장
+        let uiImage = UIImage(cgImage: cgImage)
+        qrCodeImage = Image(uiImage: uiImage)
     }
+}
+
+struct UserInfo: Codable {
+    let email: String
 }
 
 #Preview {
