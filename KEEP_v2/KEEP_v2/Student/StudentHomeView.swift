@@ -6,8 +6,26 @@
 //
 
 import SwiftUI
+import Alamofire
+
+struct Device: Codable, Identifiable {
+    let id: Int
+    let deviceName: String
+    let imgUrl: String
+    let regDate: String
+    let rentDate: String?
+    let status: String
+}
+
+struct DeviceResponse: Codable {
+    let httpStatus: String
+    let message: String
+    let data: [Device]
+}
 
 struct StudentHomeView: View {
+    @StateObject private var viewModel = DeviceViewModel()
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -221,124 +239,48 @@ struct StudentHomeView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("기기 대여 현황")
                                 .font(.system(size: 17, weight: .semibold))
-                                .foregroundColor(textColor)
+                                .foregroundColor(.black)
                                 .padding(.leading, 10)
                             Rectangle()
-                                .frame(width:346, height: 338)
+                                .frame(width: 346, height: 338)
                                 .cornerRadius(20)
                                 .foregroundColor(.white)
                                 .shadow(radius: 3, x: 3, y: 3)
                                 .overlay {
                                     ScrollView {
-                                        VStack(spacing:30) {
-                                            HStack(spacing: 10) {
-                                                Image("macbook")
-                                                    .resizable()
-                                                    .frame(width:70, height: 70)
-                                                VStack(alignment: .leading, spacing: 6) {
-                                                    HStack(spacing: 8) {
-                                                        Text("맥북")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 17, weight: .semibold))
-                                                        Rectangle()
-                                                            .frame(width: 48, height: 15)
-                                                            .cornerRadius(7)
-                                                            .foregroundColor(Color(hex: "F6556C"))
-                                                            .overlay {
-                                                                Text("사용 중")
-                                                                    .foregroundColor(.white)
-                                                                    .font(.system(size: 10, weight: .regular))
-                                                            }
+                                        VStack(spacing: 30) {
+                                            ForEach(viewModel.devices) { device in
+                                                HStack(spacing: 10) {
+                                                    AsyncImage(url: URL(string: device.imgUrl)) { image in
+                                                        image.resizable()
+                                                            .frame(width: 70, height: 70)
+                                                    } placeholder: {
+                                                        ProgressView()
                                                     }
-                                                    HStack(spacing: 11) {
-                                                        Text("대여 시작일")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("2024.03.28")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
-                                                    }
-                                                    HStack(spacing: 36) {
-                                                        Text("대여자")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("최**")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
-                                                    }
-                                                }
-                                            }
-                                            HStack(spacing: 10) {
-                                                Image("macbook")
-                                                    .resizable()
-                                                    .frame(width:70, height: 70)
-                                                VStack(alignment: .leading, spacing: 6) {
-                                                    HStack(spacing: 8) {
-                                                        Text("맥북")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 17, weight: .semibold))
-                                                        Rectangle()
-                                                            .frame(width: 48, height: 15)
-                                                            .cornerRadius(7)
-                                                            .foregroundColor(Color(hex: "F6556C"))
-                                                            .overlay {
-                                                                Text("사용 중")
-                                                                    .foregroundColor(.white)
-                                                                    .font(.system(size: 10, weight: .regular))
-                                                            }
-                                                    }
-                                                    HStack(spacing: 11) {
-                                                        Text("대여 시작일")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("2024.03.28")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
-                                                    }
-                                                    HStack(spacing: 36) {
-                                                        Text("대여자")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("최**")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
-                                                    }
-                                                }
-                                            }
-                                            HStack(spacing: 10) {
-                                                Image("macbook")
-                                                    .resizable()
-                                                    .frame(width:70, height: 70)
-                                                VStack(alignment: .leading, spacing: 6) {
-                                                    HStack(spacing: 8) {
-                                                        Text("맥북")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 17, weight: .semibold))
-                                                        Rectangle()
-                                                            .frame(width: 48, height: 15)
-                                                            .cornerRadius(7)
-                                                            .foregroundColor(Color(hex: "F6556C"))
-                                                            .overlay {
-                                                                Text("사용 중")
-                                                                    .foregroundColor(.white)
-                                                                    .font(.system(size: 10, weight: .regular))
-                                                            }
-                                                    }
-                                                    HStack(spacing: 11) {
-                                                        Text("대여 시작일")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("2024.03.28")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
-                                                    }
-                                                    HStack(spacing: 36) {
-                                                        Text("대여자")
-                                                            .foregroundColor(textColor)
-                                                            .font(.system(size: 12, weight: .regular))
-                                                        Text("최**")
-                                                            .foregroundColor(Color(hex: "4D5967"))
-                                                            .font(.system(size: 13, weight: .medium))
+                                                    
+                                                    VStack(alignment: .leading, spacing: 6) {
+                                                        HStack(spacing: 8) {
+                                                            Text(device.deviceName)
+                                                                .foregroundColor(Color(hex: "4D5967"))
+                                                                .font(.system(size: 17, weight: .semibold))
+                                                            Rectangle()
+                                                                .frame(width: 48, height: 15)
+                                                                .cornerRadius(7)
+                                                                .foregroundColor(device.status == "AVAILABLE" ? Color.green : Color.red)
+                                                                .overlay {
+                                                                    Text(device.status == "AVAILABLE" ? "대여 가능" : "사용 중")
+                                                                        .foregroundColor(.white)
+                                                                        .font(.system(size: 10, weight: .regular))
+                                                                }
+                                                        }
+                                                        HStack(spacing: 11) {
+                                                            Text("대여 시작일")
+                                                                .foregroundColor(textColor)
+                                                                .font(.system(size: 12, weight: .regular))
+                                                            Text(device.regDate)
+                                                                .foregroundColor(Color(hex: "4D5967"))
+                                                                .font(.system(size: 13, weight: .medium))
+                                                        }
                                                     }
                                                 }
                                             }
@@ -349,11 +291,40 @@ struct StudentHomeView: View {
                                     }
                                 }
                         }
+                        .onAppear {
+                            viewModel.fetchDevices()
+                        }
                     } // 스크롤뷰
                 } // VStack
                 .navigationBarBackButtonHidden(true)
             } // ZStack
         } // NavigationStack
+    }
+}
+
+class DeviceViewModel: ObservableObject {
+    @Published var devices: [Device] = []
+    
+    func fetchDevices() {
+        guard let token = UserDefaultsManager.shared.loadToken() else {
+            print("토큰이 없습니다.")
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        
+        AF.request(DeviceListAPI, method: .get, headers: headers).responseDecodable(of: DeviceResponse.self) { response in
+            switch response.result {
+            case .success(let deviceResponse):
+                DispatchQueue.main.async {
+                    self.devices = deviceResponse.data
+                }
+            case .failure(let error):
+                print("Error fetching devices: \(error)")
+            }
+        }
     }
 }
 
