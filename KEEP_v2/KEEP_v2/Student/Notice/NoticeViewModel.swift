@@ -24,7 +24,7 @@ class NoticeViewModel: ObservableObject {
             "Authorization": "Bearer \(token)"
         ]
         
-        AF.request("https://your-api-url.com/notices", headers: headers).responseDecodable(of: NoticeResponse.self) { response in
+        AF.request(NoticeListAPI, headers: headers).responseDecodable(of: NoticeResponse.self) { response in
             switch response.result {
             case .success(let noticeResponse):
                 self.notices = noticeResponse.data
