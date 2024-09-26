@@ -26,6 +26,9 @@ struct DeviceResponse: Codable {
 struct StudentHomeView: View {
     @StateObject private var viewModel = DeviceViewModel()
     
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -115,7 +118,7 @@ struct StudentHomeView: View {
                                         VStack(spacing:25) {
                                             HStack(spacing: 31) {
                                                 Button {
-                                                    
+                                                    sendStatusToServer(status: "NORMAL")
                                                 } label: {
                                                     VStack(spacing: 5) {
                                                         Image("good")
@@ -127,7 +130,7 @@ struct StudentHomeView: View {
                                                     }
                                                 }
                                                 Button {
-                                                    
+                                                    sendStatusToServer(status: "PAIN")
                                                 } label: {
                                                     VStack(spacing:9) {
                                                         Image("sick")
@@ -141,25 +144,25 @@ struct StudentHomeView: View {
                                             }
                                             HStack(spacing: 31) {
                                                 Button {
-                                                    
+                                                    sendStatusToServer(status: "HEALTHROOM")
                                                 } label: {
                                                     VStack(spacing: 8) {
                                                         Image("medc")
                                                             .resizable()
                                                             .frame(width:39, height: 39)
-                                                        Text("정상")
+                                                        Text("보건실")
                                                             .foregroundColor(mainColor)
                                                             .font(.system(size: 10.5, weight: .semibold))
                                                     }
                                                 }
                                                 Button {
-                                                    
+                                                    sendStatusToServer(status: "EMERGENCY")
                                                 } label: {
                                                     VStack(spacing:11) {
                                                         Image("wari")
                                                             .resizable()
                                                             .frame(width:42, height: 36)
-                                                        Text("통증")
+                                                        Text("긴급")
                                                             .foregroundColor(mainColor)
                                                             .font(.system(size: 10.5, weight: .semibold))
                                                     }
@@ -290,6 +293,9 @@ struct StudentHomeView: View {
                                         .padding(.top, 30)
                                     }
                                 }
+                                .alert(isPresented: $showAlert) {
+                                                            Alert(title: Text("상태 전송"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
+                                                        }
                         }
                         .onAppear {
                             viewModel.fetchDevices()
@@ -300,6 +306,40 @@ struct StudentHomeView: View {
             } // ZStack
         } // NavigationStack
     }
+    
+    func sendStatusToServer(status: String) {
+        let parameters: [String: Any] = [
+            "status": status
+        ]
+        
+        guard let token = UserDefaultsManager.shared.loadToken() else {
+            print("토큰을 찾을 수 없습니다.")
+            alertMessage = "토큰을 찾을 수 없습니다."
+            showAlert = true
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"
+        ]
+        
+        AF.request(UserStatusAPI, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    alertMessage = "상태 전송 완료 !"
+                    showAlert = true
+                    print("상태 전송 성공: \(status)")
+                case .failure(let error):
+                    alertMessage = "상태 전송 실패: \(error.localizedDescription)"
+                    showAlert = true
+                    print("상태 전송 실패: \(error.localizedDescription)")
+                }
+            }
+    }
+
 }
 
 class DeviceViewModel: ObservableObject {
