@@ -12,9 +12,21 @@ struct Device: Codable, Identifiable {
     let id: Int
     let deviceName: String
     let imgUrl: String
+    let borrower: String
     let regDate: String
     let rentDate: String?
     let status: String
+    
+    var truncatedRegDate: String {
+        return String(regDate.prefix(10))
+    }
+    
+    var maskedBorrower: String {
+        guard !borrower.isEmpty else { return "" } // 빈 이름 처리
+        let firstChar = borrower.prefix(1) // 첫 글자
+        let masked = String(repeating: "*", count: max(0, borrower.count - 1)) // 나머지 글자
+        return firstChar + masked
+    }
 }
 
 struct DeviceResponse: Codable {
@@ -269,24 +281,39 @@ struct StudentHomeView: View {
                                                             Rectangle()
                                                                 .frame(width: 48, height: 15)
                                                                 .cornerRadius(7)
-                                                                .foregroundColor(device.status == "AVAILABLE" ? Color.green : Color.red)
+                                                                .foregroundColor(device.status == "AVAILABLE" ? Color(hex: "5589FE") : Color(hex: "F6556C"))
                                                                 .overlay {
                                                                     Text(device.status == "AVAILABLE" ? "대여 가능" : "사용 중")
                                                                         .foregroundColor(.white)
                                                                         .font(.system(size: 10, weight: .regular))
                                                                 }
                                                         }
-                                                        HStack(spacing: 11) {
-                                                            Text("대여 시작일")
-                                                                .foregroundColor(textColor)
-                                                                .font(.system(size: 12, weight: .regular))
-                                                            Text(device.regDate)
-                                                                .foregroundColor(Color(hex: "4D5967"))
-                                                                .font(.system(size: 13, weight: .medium))
+                                                        if(device.status == "AVAILABLE") {
+                                                            Text("대여 가능한 상태입니다.")
+                                                                .font(.system(size: 11, weight: .regular))
+                                                                .foregroundColor(Color(hex: "B0B9C2"))
+                                                        } else {
+                                                            HStack(spacing: 11) {
+                                                                Text("대여 시작일")
+                                                                    .foregroundColor(textColor)
+                                                                    .font(.system(size: 12, weight: .regular))
+                                                                Text(device.truncatedRegDate)
+                                                                    .foregroundColor(Color(hex: "4D5967"))
+                                                                    .font(.system(size: 13, weight: .medium))
+                                                            }
+                                                            HStack(spacing: 35) {
+                                                                Text("대여자")
+                                                                    .foregroundColor(textColor)
+                                                                    .font(.system(size: 12, weight: .regular))
+                                                                Text(device.maskedBorrower)
+                                                                    .foregroundColor(Color(hex: "4D5967"))
+                                                                    .font(.system(size: 13, weight: .medium))
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.leading, 40)
@@ -294,8 +321,8 @@ struct StudentHomeView: View {
                                     }
                                 }
                                 .alert(isPresented: $showAlert) {
-                                                            Alert(title: Text("상태 전송"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
-                                                        }
+                                    Alert(title: Text("상태 전송"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
+                                }
                         }
                         .onAppear {
                             viewModel.fetchDevices()
@@ -339,7 +366,7 @@ struct StudentHomeView: View {
                 }
             }
     }
-
+    
 }
 
 class DeviceViewModel: ObservableObject {
