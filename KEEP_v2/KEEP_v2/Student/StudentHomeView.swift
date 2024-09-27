@@ -14,7 +14,7 @@ struct StudentHomeView: View {
     
     @State private var showAlert = false
     @State private var alertMessage = ""
-
+    
     @State private var selectedBook: Book?
     var body: some View {
         NavigationStack {
@@ -167,60 +167,66 @@ struct StudentHomeView: View {
                             .shadow(radius: 3, x: 3, y: 3)
                             .overlay {
                                 VStack(alignment: .leading,spacing: 28) {
-                                    HStack(spacing:38) {
-                                        ForEach(bookViewModel.books) { book in
-                                            Button {
-                                                selectedBook = book
-                                            } label: {
-                                                Image("testbook")
-                                                    .resizable()
-                                                    .frame(width: 68, height: 100)
-                                            }
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading,39)
-                                    VStack(alignment: .leading, spacing:11) {
-                                        if let selectedBook = selectedBook {
-                                            VStack(alignment: .leading, spacing: 3) {
-                                                HStack(spacing:5) {
-                                                    Text(selectedBook.bookName)
-                                                        .font(.system(size: 17, weight: .semibold))
-                                                        .foregroundColor(textColor)
-                                                    Text("D-3")
-                                                        .font(.system(size: 17, weight: .semibold))
-                                                        .foregroundColor(mainColor)
-                                                }
-                                                Text(selectedBook.writer)
-                                                    .font(.system(size: 13, weight: .medium))
-                                                    .foregroundColor(Color(hex: "8E98A8"))
-                                            }
-                                            VStack(alignment: .leading, spacing: 8) {
-                                                HStack(spacing: 10) {
-                                                    Text("대출일")
-                                                        .font(.system(size: 13, weight: .regular))
-                                                        .foregroundColor(textColor)
-                                                    Text(selectedBook.truncatedRentDate)
-                                                        .font(.system(size: 13, weight: .medium))
-                                                        .foregroundColor(Color(hex: "3182F7"))
-                                                }
-                                                HStack(spacing: 10) {
-                                                    Text("반납 예정일")
-                                                        .font(.system(size: 13, weight: .regular))
-                                                        .foregroundColor(textColor)
-                                                    Text("2024.04.11")
-                                                        .font(.system(size: 13, weight: .medium))
-                                                        .foregroundColor(Color(hex: "F6556C"))
+                                    if bookViewModel.books.isEmpty {
+                                        Text("대여 중인 책이 없습니다.")
+                                            .font(.system(size: 19, weight: .semibold))
+                                            .foregroundColor(Color(hex: "7B8086"))
+                                    } else {
+                                        HStack(spacing:38) {
+                                            ForEach(bookViewModel.books) { book in
+                                                Button {
+                                                    selectedBook = book
+                                                } label: {
+                                                    Image("testbook")
+                                                        .resizable()
+                                                        .frame(width: 68, height: 100)
                                                 }
                                             }
                                         }
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.leading,39)
+                                        VStack(alignment: .leading, spacing:11) {
+                                            if let selectedBook = selectedBook {
+                                                VStack(alignment: .leading, spacing: 3) {
+                                                    HStack(spacing:5) {
+                                                        Text(selectedBook.bookName)
+                                                            .font(.system(size: 17, weight: .semibold))
+                                                            .foregroundColor(textColor)
+                                                        Text("D-3")
+                                                            .font(.system(size: 17, weight: .semibold))
+                                                            .foregroundColor(mainColor)
+                                                    }
+                                                    Text(selectedBook.writer)
+                                                        .font(.system(size: 13, weight: .medium))
+                                                        .foregroundColor(Color(hex: "8E98A8"))
+                                                }
+                                                VStack(alignment: .leading, spacing: 8) {
+                                                    HStack(spacing: 10) {
+                                                        Text("대출일")
+                                                            .font(.system(size: 13, weight: .regular))
+                                                            .foregroundColor(textColor)
+                                                        Text(selectedBook.truncatedRentDate)
+                                                            .font(.system(size: 13, weight: .medium))
+                                                            .foregroundColor(Color(hex: "3182F7"))
+                                                    }
+                                                    HStack(spacing: 10) {
+                                                        Text("반납 예정일")
+                                                            .font(.system(size: 13, weight: .regular))
+                                                            .foregroundColor(textColor)
+                                                        Text("2024.04.11")
+                                                            .font(.system(size: 13, weight: .medium))
+                                                            .foregroundColor(Color(hex: "F6556C"))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.leading,23)
                                     }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading,23)
                                 }
-                            }
-                            .onAppear {
-                                bookViewModel.fetchBooks()
+                                .onAppear {
+                                    bookViewModel.fetchBooks()
+                                }
                             }
                             .padding(.bottom, 23)
                         VStack(alignment: .leading, spacing: 8) {
