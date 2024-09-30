@@ -36,6 +36,7 @@
 		60EA6A7D2CA3D288006622A4 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A7C2CA3D288006622A4 /* NoticeViewModel.swift */; };
 		60EA6A7F2CA64E1C006622A4 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A7E2CA64E1C006622A4 /* DeviceViewModel.swift */; };
 		60EA6A812CA64EBC006622A4 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A802CA64EBC006622A4 /* BookViewModel.swift */; };
+		60EA6A832CAA46D4006622A4 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A822CAA46D4006622A4 /* MypageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		60EA6A7C2CA3D288006622A4 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
 		60EA6A7E2CA64E1C006622A4 /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
 		60EA6A802CA64EBC006622A4 /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
+		60EA6A822CAA46D4006622A4 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				4DBE41772C9C104100C06E87 /* Notice */,
 				4D192A4C2C92961600B34FCA /* QrView.swift */,
 				4D7011712C9C32D800FB2D09 /* MypageView.swift */,
+				60EA6A822CAA46D4006622A4 /* MypageViewModel.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				4D3A8A6F2C89A41400AF486F /* ContentView.swift in Sources */,
 				4DBE41762C9C103B00C06E87 /* NoticeDetailView.swift in Sources */,
 				60B9E1B62CA1A4E400B2F371 /* StudentInfoView.swift in Sources */,
+				60EA6A832CAA46D4006622A4 /* MypageViewModel.swift in Sources */,
 				4DB0ABA92C8FE8D500144483 /* TeacherHomeView.swift in Sources */,
 				60EA6A7F2CA64E1C006622A4 /* DeviceViewModel.swift in Sources */,
 				4DF478582C89C3DA0078111B /* SelectView.swift in Sources */,
