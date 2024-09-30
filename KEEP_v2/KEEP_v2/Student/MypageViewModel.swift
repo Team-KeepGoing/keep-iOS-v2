@@ -13,8 +13,16 @@ class MypageViewModel: ObservableObject {
     @Published var borrowedDevices: [BorrowedDevice] = []
     
     func fetchData() {
+        guard let token = UserDefaultsManager.shared.loadToken() else {
+            print("토큰을 불러오지 못했습니다.")
+            return
+        }
+
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
         
-        AF.request(UserInfoAPI, method: .get).responseJSON { response in
+        AF.request(UserInfoAPI, method: .get, headers: headers).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let json = value as? [String: Any],
