@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct MypageView: View {
+    @StateObject private var viewModel = MypageViewModel()
     var body: some View {
         ZStack {
             Color(hex:"F9FAFC")
@@ -41,6 +43,22 @@ struct MypageView: View {
                             .cornerRadius(20)
                             .foregroundColor(.white)
                             .shadow(radius: 1)
+                            .overlay {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 39) {
+                                        ForEach(viewModel.borrowedBooks) { book in
+                                            AsyncImage(url: URL(string: book.imageUrl)) { image in
+                                                image
+                                                    .resizable()
+                                                    .frame(width: 68, height: 100)
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.leading, 31)
+                            }
                     }
                     VStack(spacing: 10) {
                         Text("회원님이 대출중인 기자재 현황")
@@ -53,6 +71,22 @@ struct MypageView: View {
                             .cornerRadius(20)
                             .foregroundColor(.white)
                             .shadow(radius: 1)
+                            .overlay {
+                                ScrollView(.horizontal) {
+                                    HStack(spacing: 39) {
+                                        ForEach(viewModel.borrowedDevices) { device in
+                                            AsyncImage(url: URL(string: device.imgUrl)) { image in
+                                                image
+                                                    .resizable()
+                                                    .frame(width: 68, height: 68)
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.leading, 31)
+                            }
                     }
                     Button {
                         
@@ -69,6 +103,9 @@ struct MypageView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            viewModel.fetchData()
         }
     }
 }
