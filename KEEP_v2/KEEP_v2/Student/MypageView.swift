@@ -10,6 +10,7 @@ import Alamofire
 
 struct MypageView: View {
     @StateObject private var viewModel = MypageViewModel()
+    
     var body: some View {
         ZStack {
             Color(hex:"F9FAFC")
@@ -89,7 +90,8 @@ struct MypageView: View {
                             }
                     }
                     Button {
-                        
+                        moveToRootView()
+                        UserDefaultsManager.shared.deleteToken()
                     } label: {
                         Rectangle()
                             .frame(width:346, height: 54)
@@ -108,6 +110,13 @@ struct MypageView: View {
             viewModel.fetchData()
         }
     }
+    func moveToRootView() {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = UIHostingController(rootView: StartView())
+                window.makeKeyAndVisible()
+            }
+        }
 }
 
 #Preview {

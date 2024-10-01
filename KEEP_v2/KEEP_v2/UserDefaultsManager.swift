@@ -20,4 +20,8 @@ class UserDefaultsManager {
     func loadToken() -> String? {
         return UserDefaults.standard.string(forKey: userTokenKey)
     }
+    
+    func deleteToken() {
+        UserDefaults.standard.removeObject(forKey: "userToken")
+    }
 }

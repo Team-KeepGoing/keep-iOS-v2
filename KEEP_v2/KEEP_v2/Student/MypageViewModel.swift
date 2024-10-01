@@ -25,6 +25,7 @@ class MypageViewModel: ObservableObject {
         AF.request(UserInfoAPI, method: .get, headers: headers).responseJSON { response in
             switch response.result {
             case .success(let value):
+                print("전체 JSON 값: \(value)")
                 if let json = value as? [String: Any],
                    let books = json["borrowedBooks"] as? [[String: Any]],
                    let devices = json["borrowedDevices"] as? [[String: Any]] {
@@ -44,6 +45,9 @@ class MypageViewModel: ObservableObject {
                               let rentDate = dict["rentDate"] as? String else { return nil }
                         return BorrowedDevice(id: id, deviceName: deviceName, imgUrl: imgUrl, rentDate: rentDate)
                     }
+                    
+                } else {
+                    print("JSON 형식이 맞지 않습니다.")
                 }
             case .failure(let error):
                 print("Error: \(error)")
@@ -51,6 +55,7 @@ class MypageViewModel: ObservableObject {
         }
     }
 }
+
 
 struct BorrowedBook: Identifiable {
     let id: Int
