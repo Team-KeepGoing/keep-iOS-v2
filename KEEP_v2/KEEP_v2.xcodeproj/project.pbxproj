@@ -36,6 +36,7 @@
 		60EA6A7F2CA64E1C006622A4 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A7E2CA64E1C006622A4 /* DeviceViewModel.swift */; };
 		60EA6A812CA64EBC006622A4 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A802CA64EBC006622A4 /* BookViewModel.swift */; };
 		60EA6A832CAA46D4006622A4 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A822CAA46D4006622A4 /* MypageViewModel.swift */; };
+		60EA6A852CABD7DE006622A4 /* StudentSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA6A842CABD7DE006622A4 /* StudentSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		60EA6A7E2CA64E1C006622A4 /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
 		60EA6A802CA64EBC006622A4 /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		60EA6A822CAA46D4006622A4 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
+		60EA6A842CABD7DE006622A4 /* StudentSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				4D192A4F2C93053E00B34FCA /* StudentSearchView.swift */,
+				60EA6A842CABD7DE006622A4 /* StudentSearchViewModel.swift */,
 				4D5DA8412CA057A800EB560D /* NameSearchView.swift */,
 				60B9E1B52CA1A4E400B2F371 /* StudentInfoView.swift */,
 			);
@@ -307,6 +310,7 @@
 				4DB0ABA22C8FDD8100144483 /* API.swift in Sources */,
 				4D3A8A6D2C89A41400AF486F /* KEEP_v2App.swift in Sources */,
 				4D192A502C93053E00B34FCA /* StudentSearchView.swift in Sources */,
+				60EA6A852CABD7DE006622A4 /* StudentSearchViewModel.swift in Sources */,
 				60EA6A7D2CA3D288006622A4 /* NoticeViewModel.swift in Sources */,
 				4D192A4D2C92961600B34FCA /* QrView.swift in Sources */,
 			);

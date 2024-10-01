@@ -29,8 +29,8 @@ struct StudentHomeView: View {
                             .frame(width: 28)
                         Spacer()
                             .frame(width: 277)
-                        NavigationLink(destination: NoticeView()) {
-                            Image("mailalert")
+                        NavigationLink(destination: MypageView()) {
+                            Image("Mypage")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 28)
