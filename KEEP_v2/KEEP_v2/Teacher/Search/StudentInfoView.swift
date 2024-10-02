@@ -58,7 +58,11 @@ struct StudentInfoView: View {
                                 
                                 VStack(spacing: 11) {
                                     Button {
-                                        // Call functionality
+                                        if let phoneURL = URL(string: "tel:\(studentData.phoneNum)") {
+                                            if UIApplication.shared.canOpenURL(phoneURL) {
+                                                UIApplication.shared.open(phoneURL)
+                                            }
+                                        }
                                     } label: {
                                         Rectangle()
                                             .frame(width: 261, height: 50)
@@ -66,7 +70,7 @@ struct StudentInfoView: View {
                                             .cornerRadius(10)
                                             .overlay {
                                                 HStack(spacing: 0) {
-                                                    Image(systemName: "phone.fill")
+                                                    Image("call")
                                                         .resizable()
                                                         .frame(width: 30, height: 30)
                                                     Text("전화걸기")
@@ -77,7 +81,11 @@ struct StudentInfoView: View {
                                     }
                                     
                                     Button {
-                                        // SMS functionality
+                                        if let smsURL = URL(string: "sms:\(studentData.phoneNum)") {
+                                            if UIApplication.shared.canOpenURL(smsURL) {
+                                                UIApplication.shared.open(smsURL)
+                                            }
+                                        }
                                     } label: {
                                         Rectangle()
                                             .frame(width: 261, height: 50)
@@ -85,7 +93,7 @@ struct StudentInfoView: View {
                                             .cornerRadius(10)
                                             .overlay {
                                                 HStack(spacing: 2) {
-                                                    Image(systemName: "message.fill")
+                                                    Image("chat")
                                                         .resizable()
                                                         .frame(width: 27, height: 27)
                                                     Text("문자하기")
