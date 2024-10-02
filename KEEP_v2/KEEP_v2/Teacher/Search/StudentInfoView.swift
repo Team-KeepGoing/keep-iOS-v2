@@ -107,7 +107,7 @@ struct StudentInfoView: View {
                         }
                     
                     VStack(spacing: 3) {
-                        Text("학생의 상태는 \"\(studentData.status)\"입니다.")
+                        Text("학생의 상태는 \"\(statusText(for: studentData.status))\"입니다.")
                             .font(.system(size: 17, weight: .medium))
                             .foregroundColor(textColor)
                         Text("8분전 업데이트됨")
@@ -117,6 +117,20 @@ struct StudentInfoView: View {
                     .padding(.top, 25)
                 }
             }
+        }
+    }
+    func statusText(for status: String) -> String {
+        switch status {
+        case "NORMAL":
+            return "정상"
+        case "PAIN":
+            return "통증"
+        case "HEALTHROOM":
+            return "보건실"
+        case "EMERGENCY":
+            return "긴급"
+        default:
+            return "알 수 없음"
         }
     }
 }
