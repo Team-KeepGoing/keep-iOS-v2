@@ -151,7 +151,7 @@ struct StudentSearchView: View {
                         EmptyView()
                     }
                     
-                    NavigationLink(destination: NameSearchView(), isActive: $isNavigatingByName) {
+                    NavigationLink(destination: NameSearchView(searchedName: SearchName), isActive: $isNavigatingByName) {
                         EmptyView()
                     }
                 }

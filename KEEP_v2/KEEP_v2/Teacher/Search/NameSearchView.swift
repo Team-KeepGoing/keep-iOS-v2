@@ -8,13 +8,14 @@ import SwiftUI
 
 struct NameSearchView: View {
     @StateObject private var viewModel = StudentSearchViewModel()
-
+    var searchedName: String  // 검색된 이름 전달받기
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(hex: "F9FAFC").edgesIgnoringSafeArea(.all)
                 VStack(spacing: 35) {
-                    Text("'김주환' 학생 검색 결과")
+                    Text("'\(searchedName)' 학생 검색 결과")
                         .font(.system(size: 25, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(textColor)
@@ -61,13 +62,14 @@ struct NameSearchView: View {
                 }
             }
             .onAppear {
-                viewModel.searchStudentByName("김주환")
+                viewModel.searchStudentByName(searchedName)
             }
         }
     }
 }
 
+
 #Preview {
-    NameSearchView()
+    NameSearchView(searchedName: "김주환")
 }
 

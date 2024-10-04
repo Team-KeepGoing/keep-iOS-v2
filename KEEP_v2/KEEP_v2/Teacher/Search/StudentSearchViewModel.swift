@@ -36,6 +36,7 @@ class StudentSearchViewModel: ObservableObject {
 
     // 이름으로 학생 검색
     func searchStudentByName(_ name: String) {
+        self.studentData = nil
         let parameters: [String: String] = ["studentName": name]
 
         AF.request(StudentNameAPI, method: .post, parameters: parameters, encoding: JSONEncoding.default)
