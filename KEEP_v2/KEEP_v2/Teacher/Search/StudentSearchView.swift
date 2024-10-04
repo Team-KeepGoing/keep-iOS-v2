@@ -21,7 +21,8 @@ struct StudentSearchView: View {
     @State private var selectedClass: String = "2"
     @State private var selectedNum: String = "2"
     
-    @State private var isNavigating: Bool = false // 새로운 상태 변수 추가
+    @State private var isNavigatingByName: Bool = false
+    @State private var isNavigatingById: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -35,13 +36,24 @@ struct StudentSearchView: View {
                             .foregroundColor(textColor)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 39)
+                        
                         VStack {
                             HStack(spacing: 141) {
                                 TextField("이름을 입력해주세요", text: $SearchName)
                                     .frame(width: 150)
                                     .padding(.leading, 39)
+                                
                                 Button {
-                                    
+                                    if !SearchName.isEmpty {
+                                        // 이름으로 학생 검색
+                                        viewModel.searchStudentByName(SearchName)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                            if let studentData = viewModel.studentData, !studentData.isEmpty {
+                                                // 검색된 학생이 있을 경우에만 네비게이션 처리
+                                                isNavigatingByName = true
+                                            }
+                                        }
+                                    }
                                 } label: {
                                     Image(systemName: "magnifyingglass")
                                         .resizable()
@@ -55,6 +67,7 @@ struct StudentSearchView: View {
                                 .foregroundColor(textColor)
                         }
                     }
+                    
                     Text("검색할 학번 입력")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(textColor)
@@ -70,6 +83,7 @@ struct StudentSearchView: View {
                                 .foregroundColor(textColor)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 39)
+                            
                             Picker("학년 선택", selection: $selectedGrade) {
                                 ForEach(ScGrades, id: \.self) { grade in
                                     Text(grade).tag(grade)
@@ -78,12 +92,14 @@ struct StudentSearchView: View {
                             .pickerStyle(.inline)
                             .frame(width: 330, height: 100)
                         }
+                        
                         VStack(spacing: 0) {
                             Text("반")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(textColor)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 39)
+                            
                             Picker("반 선택", selection: $selectedClass) {
                                 ForEach(ScClass, id: \.self) { grade in
                                     Text(grade).tag(grade)
@@ -92,12 +108,14 @@ struct StudentSearchView: View {
                             .pickerStyle(.inline)
                             .frame(width: 330, height: 100)
                         }
+                        
                         VStack(spacing: 0) {
                             Text("번호")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(textColor)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 39)
+                            
                             Picker("번호 선택", selection: $selectedNum) {
                                 ForEach(ScNum, id: \.self) { grade in
                                     Text(grade).tag(grade)
@@ -107,14 +125,15 @@ struct StudentSearchView: View {
                             .frame(width: 330, height: 100)
                         }
                     }
+                    
                     Button(action: {
+                        // 학번으로 검색
                         viewModel.searchStudent(grade: selectedGrade, classNum: selectedClass, studentNum: selectedNum)
-                                                // searchStudent가 비동기로 실행되므로 데이터 로드 후 탐색 상태 업데이트
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                    if viewModel.studentData != nil {
-                                                        isNavigating = true
-                                                    }
-                                                }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            if viewModel.singleStudentData != nil {
+                                isNavigatingById = true
+                            }
+                        }
                     }) {
                         Rectangle()
                             .frame(width: 354, height: 62)
@@ -127,15 +146,14 @@ struct StudentSearchView: View {
                             }
                             .padding(.top, 15)
                     }
-                    NavigationLink(destination: Group {
-                                            if let studentData = viewModel.studentData {
-                                                StudentInfoView(studentData: studentData)
-                                            } else {
-                                                Text("학생 정보를 불러올 수 없습니다.")
-                                            }
-                                        }, isActive: $isNavigating) {
-                                            EmptyView()
-                                        }
+                    
+                    NavigationLink(destination: StudentInfoView(studentData: viewModel.singleStudentData ?? StudentData(id: 0, studentName: "", imgUrl: nil, studentId: "", phoneNum: "", mail: "", status: "")), isActive: $isNavigatingById) {
+                        EmptyView()
+                    }
+                    
+                    NavigationLink(destination: NameSearchView(), isActive: $isNavigatingByName) {
+                        EmptyView()
+                    }
                 }
             }
         }
