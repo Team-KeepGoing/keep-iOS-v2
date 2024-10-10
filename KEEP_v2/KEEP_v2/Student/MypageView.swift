@@ -22,7 +22,7 @@ struct MypageView: View {
                         .scaledToFit()
                         .frame(width: 71)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("최미래")
+                        Text(viewModel.name)
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(textColor)
                         Text("2학년 2반 6번")

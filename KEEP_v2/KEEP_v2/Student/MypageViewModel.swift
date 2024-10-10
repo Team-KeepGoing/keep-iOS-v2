@@ -11,6 +11,7 @@ import Alamofire
 class MypageViewModel: ObservableObject {
     @Published var borrowedBooks: [BorrowedBook] = []
     @Published var borrowedDevices: [BorrowedDevice] = []
+    @Published var name: String = ""
     
     func fetchData() {
         guard let token = UserDefaultsManager.shared.loadToken() else {
@@ -28,7 +29,10 @@ class MypageViewModel: ObservableObject {
                 print("전체 JSON 값: \(value)")
                 if let json = value as? [String: Any],
                    let books = json["borrowedBooks"] as? [[String: Any]],
-                   let devices = json["borrowedDevices"] as? [[String: Any]] {
+                   let devices = json["borrowedDevices"] as? [[String: Any]],
+                   let name = json["name"] as? String {
+                    
+                    self.name = name
                     
                     self.borrowedBooks = books.compactMap { dict in
                         guard let id = dict["id"] as? Int,
