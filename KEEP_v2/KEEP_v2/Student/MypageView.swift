@@ -25,7 +25,7 @@ struct MypageView: View {
                         Text(viewModel.name)
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(textColor)
-                        Text("2학년 2반 6번")
+                        Text(viewModel.formattedStudentInfo())
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color(hex: "4D5969"))
                     }

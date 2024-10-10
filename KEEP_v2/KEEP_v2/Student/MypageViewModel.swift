@@ -12,13 +12,14 @@ class MypageViewModel: ObservableObject {
     @Published var borrowedBooks: [BorrowedBook] = []
     @Published var borrowedDevices: [BorrowedDevice] = []
     @Published var name: String = ""
+    @Published var studentId: String = ""
     
     func fetchData() {
         guard let token = UserDefaultsManager.shared.loadToken() else {
             print("토큰을 불러오지 못했습니다.")
             return
         }
-
+        
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)"
         ]
@@ -30,9 +31,11 @@ class MypageViewModel: ObservableObject {
                 if let json = value as? [String: Any],
                    let books = json["borrowedBooks"] as? [[String: Any]],
                    let devices = json["borrowedDevices"] as? [[String: Any]],
-                   let name = json["name"] as? String {
+                   let name = json["name"] as? String,
+                   let studentId = json["studentId"] as? String {
                     
                     self.name = name
+                    self.studentId = studentId
                     
                     self.borrowedBooks = books.compactMap { dict in
                         guard let id = dict["id"] as? Int,
@@ -56,6 +59,17 @@ class MypageViewModel: ObservableObject {
             case .failure(let error):
                 print("Error: \(error)")
             }
+        }
+    }
+    
+    func formattedStudentInfo() -> String {
+        guard studentId.count == 4 else { return "" }
+        let grade = studentId.prefix(1)
+        let classNumber = studentId.dropFirst().prefix(1)
+        if let studentNumber = Int(studentId.suffix(2)) {
+            return "\(grade)학년 \(classNumber)반 \(studentNumber)번"
+        } else {
+            return ""
         }
     }
 }
