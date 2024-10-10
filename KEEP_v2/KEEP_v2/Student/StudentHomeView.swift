@@ -177,9 +177,12 @@ struct StudentHomeView: View {
                                                 Button {
                                                     selectedBook = book
                                                 } label: {
-                                                    Image("testbook")
-                                                        .resizable()
-                                                        .frame(width: 68, height: 100)
+                                                    AsyncImage(url: URL(string: book.imageUrl)) { image in
+                                                        image.resizable()
+                                                            .frame(width: 68, height: 100)
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                    }
                                                 }
                                             }
                                         }
