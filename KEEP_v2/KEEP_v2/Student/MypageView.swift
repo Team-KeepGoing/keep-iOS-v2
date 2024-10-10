@@ -111,12 +111,12 @@ struct MypageView: View {
         }
     }
     func moveToRootView() {
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first {
-                window.rootViewController = UIHostingController(rootView: StartView())
-                window.makeKeyAndVisible()
-            }
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController = UIHostingController(rootView: StartView())
+            window.makeKeyAndVisible()
         }
+    }
 }
 
 #Preview {

@@ -11,6 +11,16 @@ struct TeacherHomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Button {
+                    moveToRootView()
+                    UserDefaultsManager.shared.deleteToken()
+                } label: {
+                    Text("로그아웃")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(Color(hex: "F6556C"))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing, 35)
+                }
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 10) {
@@ -67,6 +77,14 @@ struct TeacherHomeView: View {
                     .frame(height: 314)
             }
             .navigationBarBackButtonHidden(true)
+        }
+    }
+    
+    func moveToRootView() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController = UIHostingController(rootView: StartView())
+            window.makeKeyAndVisible()
         }
     }
 }
