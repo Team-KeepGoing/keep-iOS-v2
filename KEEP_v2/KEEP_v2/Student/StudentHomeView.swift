@@ -187,36 +187,44 @@ struct StudentHomeView: View {
                                         .padding(.leading,39)
                                         VStack(alignment: .leading, spacing:11) {
                                             if let selectedBook = selectedBook {
-                                                VStack(alignment: .leading, spacing: 3) {
-                                                    HStack(spacing:5) {
-                                                        Text(selectedBook.bookName)
-                                                            .font(.system(size: 17, weight: .semibold))
-                                                            .foregroundColor(textColor)
-                                                        Text("D-3")
-                                                            .font(.system(size: 17, weight: .semibold))
-                                                            .foregroundColor(mainColor)
-                                                    }
-                                                    Text(selectedBook.writer)
-                                                        .font(.system(size: 13, weight: .medium))
-                                                        .foregroundColor(Color(hex: "8E98A8"))
-                                                }
-                                                VStack(alignment: .leading, spacing: 8) {
-                                                    HStack(spacing: 10) {
-                                                        Text("대출일")
-                                                            .font(.system(size: 13, weight: .regular))
-                                                            .foregroundColor(textColor)
-                                                        Text(selectedBook.truncatedRentDate)
+                                                if let rentDate = convertToDate(selectedBook.rentDate) {
+                                                    let returnDate = Calendar.current.date(byAdding: .day, value: 7, to: rentDate) ?? Date()
+                                                    let dDay = Calendar.current.dateComponents([.day], from: Date(), to: returnDate).day ?? 0
+                                                    
+                                                    VStack(alignment: .leading, spacing: 3) {
+                                                        HStack(spacing: 5) {
+                                                            Text(selectedBook.bookName)
+                                                                .font(.system(size: 17, weight: .semibold))
+                                                                .foregroundColor(textColor)
+                                                            Text("D-\(dDay)")
+                                                                .font(.system(size: 17, weight: .semibold))
+                                                                .foregroundColor(mainColor)
+                                                        }
+                                                        Text(selectedBook.writer)
                                                             .font(.system(size: 13, weight: .medium))
-                                                            .foregroundColor(Color(hex: "3182F7"))
+                                                            .foregroundColor(Color(hex: "8E98A8"))
                                                     }
-                                                    HStack(spacing: 10) {
-                                                        Text("반납 예정일")
-                                                            .font(.system(size: 13, weight: .regular))
-                                                            .foregroundColor(textColor)
-                                                        Text("2024.04.11")
-                                                            .font(.system(size: 13, weight: .medium))
-                                                            .foregroundColor(Color(hex: "F6556C"))
+                                                    
+                                                    VStack(alignment: .leading, spacing: 8) {
+                                                        HStack(spacing: 10) {
+                                                            Text("대출일")
+                                                                .font(.system(size: 13, weight: .regular))
+                                                                .foregroundColor(textColor)
+                                                            Text(selectedBook.truncatedRentDate)
+                                                                .font(.system(size: 13, weight: .medium))
+                                                                .foregroundColor(Color(hex: "3182F7"))
+                                                        }
+                                                        HStack(spacing: 10) {
+                                                            Text("반납 예정일")
+                                                                .font(.system(size: 13, weight: .regular))
+                                                                .foregroundColor(textColor)
+                                                            Text(formatDate(returnDate))
+                                                                .font(.system(size: 13, weight: .medium))
+                                                                .foregroundColor(Color(hex: "F6556C"))
+                                                        }
                                                     }
+                                                } else {
+                                                    Text("날짜 형식이 올바르지 않습니다.")
                                                 }
                                             }
                                         }
@@ -305,11 +313,23 @@ struct StudentHomeView: View {
                         .onAppear {
                             viewModel.fetchDevices()
                         }
-                    } // 스크롤뷰
-                } // VStack
+                    }
+                }
                 .navigationBarBackButtonHidden(true)
-            } // ZStack
-        } // NavigationStack
+            }
+        }
+    }
+    
+    func convertToDate(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        return dateFormatter.date(from: dateString)
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // 원하는 형식으로 설정
+        return dateFormatter.string(from: date)
     }
     
     func sendStatusToServer(status: String) {
@@ -332,6 +352,7 @@ struct StudentHomeView: View {
         AF.request(UserStatusAPI, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .response { response in
+                
                 switch response.result {
                 case .success:
                     alertMessage = "상태 전송 완료 !"
