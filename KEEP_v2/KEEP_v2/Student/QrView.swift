@@ -48,14 +48,29 @@ struct QrView: View {
                     Text("QR 코드가 생성되지 않았습니다.")
                 }
                 
-                Button {
-                    fetchUserEmailAndGenerateQRCode()
-                } label: {
-                    Text("QR코드 생성")
-                        .foregroundColor(mainColor)
-                        .font(.system(size: 15, weight: .regular))
+                if qrCodeGenerated {
+                    VStack {
+                        Text("해당 회원님의 고유 QR이며")
+                        HStack(spacing: 4) {
+                            Text("앱 재부팅 시")
+                            Text("변경될 예정")
+                                .underline()
+                            Text("입니다.")
+                        }
+                    }
+                    .foregroundColor(mainColor)
+                    .font(.system(size: 15, weight: .regular))
+                    .padding()
+                } else {
+                    Button {
+                        fetchUserEmailAndGenerateQRCode()
+                    } label: {
+                        Text("QR코드 생성")
+                            .foregroundColor(mainColor)
+                            .font(.system(size: 15, weight: .regular))
+                    }
+                    .padding()
                 }
-                .padding()
             }
             Spacer()
                 .frame(height: 100)
@@ -77,6 +92,7 @@ struct QrView: View {
             switch response.result {
             case .success(let userInfo):
                 generateQRCode(from: userInfo.email)
+                qrCodeGenerated = true
                 
             case .failure(let error):
                 print("유저 정보를 불러오는 중 오류 발생: \(error)")
