@@ -34,7 +34,7 @@ class BookViewModel: ObservableObject {
     }
 }
 
-struct Book: Codable, Identifiable {
+struct Book: Codable, Identifiable, Equatable {
     let id: Int
     let bookName: String
     let writer: String

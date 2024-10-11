@@ -238,6 +238,12 @@ struct StudentHomeView: View {
                                 .onAppear {
                                     bookViewModel.fetchBooks()
                                 }
+
+                                .onChange(of: bookViewModel.books) { newBooks in
+                                    if let firstBook = newBooks.first {
+                                        selectedBook = firstBook
+                                    }
+                                }
                             }
                             .padding(.bottom, 23)
                         VStack(alignment: .leading, spacing: 8) {
