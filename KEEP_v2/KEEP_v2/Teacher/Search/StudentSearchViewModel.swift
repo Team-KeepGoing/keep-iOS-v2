@@ -81,4 +81,5 @@ struct StudentData: Identifiable, Decodable {
     let phoneNum: String
     let mail: String
     let status: String
+    let statusTime: String
 }

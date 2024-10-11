@@ -107,10 +107,18 @@ struct StudentInfoView: View {
                         }
                     
                     VStack(spacing: 3) {
-                        Text("학생의 상태는 \"\(statusText(for: studentData.status))\"입니다.")
-                            .font(.system(size: 17, weight: .medium))
-                            .foregroundColor(textColor)
-                        Text("8분전 업데이트됨")
+                        HStack(spacing: 0) {
+                            Text("학생의 상태는 ")
+                                .font(.system(size: 17, weight: .medium))
+                                .foregroundColor(textColor)
+                            Text("\"\(statusText(for: studentData.status))\"")
+                                .font(.system(size: 17, weight: .medium))
+                                .foregroundColor(mainColor)
+                            Text(" 입니다.")
+                                .font(.system(size: 17, weight: .medium))
+                                .foregroundColor(textColor)
+                        }
+                        Text("\(minutesAgo(from: studentData.statusTime))분전 업데이트됨")
                             .font(.system(size: 13, weight: .medium))
                             .foregroundColor(Color(hex: "4D5967"))
                     }
@@ -133,6 +141,16 @@ struct StudentInfoView: View {
             return "알 수 없음"
         }
     }
+    
+    func minutesAgo(from statusTime: String) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+        guard let statusDate = dateFormatter.date(from: statusTime) else { return 0 }
+        
+        let currentTime = Date()
+        let minutesAgo = Int(currentTime.timeIntervalSince(statusDate) / 60)
+        return minutesAgo
+    }
 }
 
 #Preview {
@@ -144,7 +162,8 @@ struct StudentInfoView: View {
         studentId: "2학년 2반 8번",
         phoneNum: "010-3852-4644",
         mail: "example@example.com",
-        status: "정상"
+        status: "정상",
+        statusTime: "2024-10-10-20-32-57"
     )
     StudentInfoView(studentData: exampleStudentData)
 }

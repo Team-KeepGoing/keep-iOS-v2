@@ -147,7 +147,7 @@ struct StudentSearchView: View {
                             .padding(.top, 15)
                     }
                     
-                    NavigationLink(destination: StudentInfoView(studentData: viewModel.singleStudentData ?? StudentData(id: 0, studentName: "", imgUrl: nil, studentId: "", phoneNum: "", mail: "", status: "")), isActive: $isNavigatingById) {
+                    NavigationLink(destination: StudentInfoView(studentData: viewModel.singleStudentData ?? StudentData(id: 0, studentName: "", imgUrl: nil, studentId: "", phoneNum: "", mail: "", status: "", statusTime: "")), isActive: $isNavigatingById) {
                         EmptyView()
                     }
                     
