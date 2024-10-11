@@ -10,6 +10,7 @@ import Alamofire
 
 struct NoticeWriteView: View {
     @State private var notice: String = ""
+    @State private var isShowingAlert = false
     
     var body: some View {
         NavigationStack {
@@ -68,6 +69,13 @@ struct NoticeWriteView: View {
                 }
             }
         }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("공지 작성 완료"),
+                message: Text("공지가 성공적으로 작성되었습니다."),
+                dismissButton: .default(Text("확인"))
+            )
+        }
     }
     
     private func sendNotice() {
@@ -91,6 +99,8 @@ struct NoticeWriteView: View {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
+                    isShowingAlert = true
+                    notice = ""
                     print("공지 전송 성공: \(value)")
                 case .failure(let error):
                     print("공지 전송 실패: \(error.localizedDescription)")
