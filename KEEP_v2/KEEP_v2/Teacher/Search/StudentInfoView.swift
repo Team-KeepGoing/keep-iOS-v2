@@ -142,7 +142,8 @@ struct StudentInfoView: View {
         }
     }
     
-    func minutesAgo(from statusTime: String) -> Int {
+    func minutesAgo(from statusTime: String?) -> Int {
+        guard let statusTime = statusTime else { return 0 }  // statusTime이 nil인 경우 처리
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
         guard let statusDate = dateFormatter.date(from: statusTime) else { return 0 }
@@ -151,6 +152,7 @@ struct StudentInfoView: View {
         let minutesAgo = Int(currentTime.timeIntervalSince(statusDate) / 60)
         return minutesAgo
     }
+
 }
 
 #Preview {

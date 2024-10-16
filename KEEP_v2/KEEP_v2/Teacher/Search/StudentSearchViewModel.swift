@@ -9,12 +9,13 @@ import Foundation
 import Alamofire
 
 class StudentSearchViewModel: ObservableObject {
-    @Published var studentData: [StudentData]?  // 배열로 수정 (이름 검색 시 사용)
-    @Published var singleStudentData: StudentData?  // 단일 학생 검색 시 사용
+    @Published var studentData: [StudentData]?  // 이름 검색 결과 저장
+    @Published var singleStudentData: StudentData?  // 학번 검색 결과 저장
     @Published var errorMessage: String?
 
     // 학번으로 학생 검색
     func searchStudent(grade: String, classNum: String, studentNum: String) {
+        // 학번 형식을 '2208'로 만들기
         let paddedNum = studentNum.count == 1 ? "0\(studentNum)" : studentNum
         let studentId = "\(grade)\(classNum)\(paddedNum)"
         
@@ -27,16 +28,19 @@ class StudentSearchViewModel: ObservableObject {
             .responseDecodable(of: StudentSearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):
-                    self.singleStudentData = data.data  // 단일 객체 저장
+                    DispatchQueue.main.async {
+                        self.singleStudentData = data.data  // 검색된 학생 저장
+                    }
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                    DispatchQueue.main.async {
+                        self.errorMessage = error.localizedDescription
+                    }
                 }
             }
     }
 
     // 이름으로 학생 검색
     func searchStudentByName(_ name: String) {
-        self.studentData = nil
         let parameters: [String: String] = ["studentName": name]
 
         AF.request(StudentNameAPI, method: .post, parameters: parameters, encoding: JSONEncoding.default)
@@ -44,32 +48,32 @@ class StudentSearchViewModel: ObservableObject {
             .responseDecodable(of: NameSearchResponse.self) { response in
                 switch response.result {
                 case .success(let data):
-                    print("Received data: \(data)")
                     DispatchQueue.main.async {
-                        self.studentData = data.data  // 배열로 저장
+                        self.studentData = data.data
                     }
                 case .failure(let error):
-                    print("Error: \(error)")
                     DispatchQueue.main.async {
                         self.studentData = nil
+                        print("Error: \(error.localizedDescription)")
+                        print("Response: \(response.debugDescription)")
                     }
                 }
             }
     }
 }
 
-// 단일 학생 응답
+// 단일 학생 응답 구조체
 struct StudentSearchResponse: Decodable {
     let httpStatus: String
     let message: String
-    let data: StudentData  // 단일 학생 객체
+    let data: StudentData  // 단일 학생 데이터
 }
 
-// 이름 검색 응답
+// 이름 검색 응답 구조체
 struct NameSearchResponse: Decodable {
     let httpStatus: String
     let message: String
-    let data: [StudentData]  // 학생 배열
+    let data: [StudentData]  // 여러 학생 데이터
 }
 
 // 학생 데이터 구조체
@@ -81,5 +85,5 @@ struct StudentData: Identifiable, Decodable {
     let phoneNum: String
     let mail: String
     let status: String
-    let statusTime: String
+    let statusTime: String?
 }
