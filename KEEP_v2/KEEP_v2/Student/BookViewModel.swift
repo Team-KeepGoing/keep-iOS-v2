@@ -25,7 +25,7 @@ class BookViewModel: ObservableObject {
             switch response.result {
             case .success(let bookResponse):
                 DispatchQueue.main.async {
-                    self.books = bookResponse.data
+                    self.books = bookResponse.data.sorted { $0.rentDate < $1.rentDate }
                 }
             case .failure(let error):
                 print("책 데이터를 가져오는 중 오류 발생: \(error.localizedDescription)")

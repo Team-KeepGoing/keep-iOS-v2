@@ -16,6 +16,7 @@ struct StudentHomeView: View {
     @State private var alertMessage = ""
     
     @State private var selectedBook: Book?
+    @State private var showLendLateWarning = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -193,7 +194,6 @@ struct StudentHomeView: View {
                                                 if let rentDate = convertToDate(selectedBook.rentDate) {
                                                     let returnDate = Calendar.current.date(byAdding: .day, value: 7, to: rentDate) ?? Date()
                                                     let dDay = Calendar.current.dateComponents([.day], from: Date(), to: returnDate).day ?? 0
-                                                    
                                                     VStack(alignment: .leading, spacing: 3) {
                                                         HStack(spacing: 5) {
                                                             Text(selectedBook.bookName)
@@ -237,11 +237,15 @@ struct StudentHomeView: View {
                                 }
                                 .onAppear {
                                     bookViewModel.fetchBooks()
+                                    if let selectedBook = selectedBook {
+                                        checkReturnDate(for: selectedBook)
+                                    }
                                 }
 
                                 .onChange(of: bookViewModel.books) { newBooks in
                                     if let firstBook = newBooks.first {
                                         selectedBook = firstBook
+                                        checkReturnDate(for: firstBook)
                                     }
                                 }
                             }
@@ -325,8 +329,31 @@ struct StudentHomeView: View {
                     }
                 }
                 .navigationBarBackButtonHidden(true)
+                
+                if showLendLateWarning, let selectedBook = selectedBook {
+                    LendLateWaringView(isShowing: $showLendLateWarning,
+                                       bookName: selectedBook.bookName,
+                                       authorName: selectedBook.writer,
+                                       rentDate: selectedBook.truncatedRentDate,
+                                       returnDate: formatDate(calculateReturnDate(for: selectedBook)),
+                                       imageUrl: selectedBook.imageUrl)
+                }
             }
         }
+    }
+    
+    func checkReturnDate(for book: Book) {
+        guard let rentDate = convertToDate(book.rentDate) else { return }
+        let returnDate = Calendar.current.date(byAdding: .day, value: 7, to: rentDate) ?? Date()
+        let oneDayBeforeReturnDate = Calendar.current.date(byAdding: .day, value: -1, to: returnDate) ?? Date()
+        if Calendar.current.isDateInToday(oneDayBeforeReturnDate) {
+            showLendLateWarning = true
+        }
+    }
+    
+    func calculateReturnDate(for book: Book) -> Date {
+        guard let rentDate = convertToDate(book.rentDate) else { return Date() }
+        return Calendar.current.date(byAdding: .day, value: 7, to: rentDate) ?? Date()
     }
     
     func convertToDate(_ dateString: String) -> Date? {
@@ -337,7 +364,7 @@ struct StudentHomeView: View {
     
     func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" // 원하는 형식으로 설정
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: date)
     }
     

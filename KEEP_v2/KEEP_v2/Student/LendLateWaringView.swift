@@ -35,14 +35,14 @@ struct LendLateWaringView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: 117, height: 188)
-                            .padding(.trailing, 13)
+                            .padding(.trailing, 19)
                             .clipped()
                     } else {
                         Image("bookPlaceholder")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 117, height: 188)
-                            .padding(.trailing, 13)
+                            .padding(.trailing, 19)
                             .clipped()
                     }
                     VStack(alignment: .leading, spacing: 15) {
