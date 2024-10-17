@@ -32,7 +32,7 @@ struct MypageView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 33)
-                VStack(spacing: 35) {
+                VStack(spacing: 27) {
                     VStack(spacing: 10) {
                         Text("회원님이 대출중인 도서 현황")
                             .font(.system(size: 15, weight: .medium))
@@ -89,6 +89,23 @@ struct MypageView: View {
                                 .padding(.leading, 31)
                             }
                     }
+                    VStack(alignment: .leading, spacing: 19) {
+                        Link(destination: URL(string: "https://romantic-approach-561.notion.site/KEEP-fd89b85b34ac450c9334a4e2748e1bab?pvs=4")!) {
+                            Text("개인정보 처리 방침")
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundColor(textColor)
+                        }
+                        HStack(spacing: 230) {
+                            Text("버전 정보")
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundColor(textColor)
+                            Text("1.0.0")
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundColor(Color(hex: "8E98A8"))
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 36)
                     Button {
                         moveToRootView()
                         UserDefaultsManager.shared.deleteToken()
