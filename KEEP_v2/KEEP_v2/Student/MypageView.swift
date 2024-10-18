@@ -60,6 +60,8 @@ struct MypageView: View {
                                 }
                                 .padding(.leading, 31)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 25)
                     }
                     VStack(spacing: 10) {
                         Text("회원님이 대출중인 기자재 현황")
@@ -88,6 +90,8 @@ struct MypageView: View {
                                 }
                                 .padding(.leading, 31)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 25)
                     }
                     VStack(alignment: .leading, spacing: 19) {
                         Link(destination: URL(string: "https://romantic-approach-561.notion.site/KEEP-fd89b85b34ac450c9334a4e2748e1bab?pvs=4")!) {
@@ -119,6 +123,8 @@ struct MypageView: View {
                                     .foregroundColor(.white)
                                     .font(.system(size: 19, weight: .bold))
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 23)
                     }
                 }
             }

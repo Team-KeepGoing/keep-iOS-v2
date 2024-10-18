@@ -194,14 +194,33 @@ struct StudentHomeView: View {
                                                 if let rentDate = convertToDate(selectedBook.rentDate) {
                                                     let returnDate = Calendar.current.date(byAdding: .day, value: 7, to: rentDate) ?? Date()
                                                     let dDay = Calendar.current.dateComponents([.day], from: Date(), to: returnDate).day ?? 0
+                                                    
+                                                    let dDayText: String = {
+                                                        if dDay > 0 {
+                                                            return "D-\(dDay)"
+                                                        } else if dDay == 0 {
+                                                            return "D-Day"
+                                                        } else {
+                                                            return "D+\(-dDay)"
+                                                        }
+                                                    }()
+                                                    
+                                                    let dDayColor: Color = {
+                                                        if dDay >= 0 {
+                                                            return mainColor
+                                                        } else {
+                                                            return Color(hex: "F6556C")
+                                                        }
+                                                    }()
+                                                    
                                                     VStack(alignment: .leading, spacing: 3) {
                                                         HStack(spacing: 5) {
                                                             Text(selectedBook.bookName)
                                                                 .font(.system(size: 17, weight: .semibold))
                                                                 .foregroundColor(textColor)
-                                                            Text("D-\(dDay)")
+                                                            Text(dDayText)
                                                                 .font(.system(size: 17, weight: .semibold))
-                                                                .foregroundColor(mainColor)
+                                                                .foregroundColor(dDayColor)
                                                         }
                                                         Text(selectedBook.writer)
                                                             .font(.system(size: 13, weight: .medium))
@@ -231,6 +250,7 @@ struct StudentHomeView: View {
                                                 }
                                             }
                                         }
+                                        
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.leading,23)
                                     }
@@ -241,7 +261,7 @@ struct StudentHomeView: View {
                                         checkReturnDate(for: selectedBook)
                                     }
                                 }
-
+                                
                                 .onChange(of: bookViewModel.books) { newBooks in
                                     if let firstBook = newBooks.first {
                                         selectedBook = firstBook
